@@ -1,0 +1,30 @@
+stages:
+- stage:
+  displayName: 'Publish blog contents to Azure Static Web App for preview'
+  jobs:
+  - deployment: 
+    variables:
+    - group: blog-publish-to-preview
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: 'blog-preview'
+    strategy:
+      runOnce:
+        deploy:
+          steps: 
+          - task: ExtractFiles@1
+            inputs:
+              archiveFilePatterns: '$(Pipeline.Workspace)/drop/blog.zip'
+              cleanDestinationFolder: false
+              destinationFolder: '$(Agent.TempDirectory)/blog'
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '$(Agent.TempDirectory)/blog'
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
+              OverWrite: true
+          - task: AzureStaticWebApp@0
+            inputs:
+              workingDirectory: '$(Build.ArtifactStagingDirectory)'
+              app_location: 'blog'
+              azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_DEPLOYMENT_TOKEN)

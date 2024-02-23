@@ -10,3 +10,5 @@ stages:
 - template: stages/generate-blog.yml
   parameters:
     rootpath: $(rootpath)
+
+- template: stages/publish-to-preview.yml
