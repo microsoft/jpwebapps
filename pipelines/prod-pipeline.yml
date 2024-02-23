@@ -11,7 +11,7 @@ variables:
   rootpath: /blog/
 
 stages:
-- template: stages/hexo-generate.yml
+- template: stages/generate-blog.yml
   parameters:
     rootpath: $(rootpath)
 

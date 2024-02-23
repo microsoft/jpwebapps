@@ -7,6 +7,6 @@ variables:
     rootpath: /blog-review/pr$(System.PullRequest.PullRequestId)
 
 stages:
-- template: stages/hexo-generate.yml
+- template: stages/generate-blog.yml
   parameters:
     rootpath: $(rootpath)

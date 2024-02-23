@@ -1,6 +1,3 @@
-parameters:
-  rootpath: '/blog/'
-
 stages:
 - stage:
   displayName: 'Generate blog contents by Hexo'
@@ -9,33 +6,35 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - script: |
-        cd $(Build.Repository.LocalPath)
-        sed -i -e "s|root: .*|root: ${{ parameters.rootpath }}|g" _config.yml
-        echo "================================"
-        echo " Content of updated _config.yml"
-        echo "================================"
-        cat _config.yml
-      displayName: 'Update _config.yml'
-
     - task: NodeTool@0
       inputs:
         versionSpec: '14.x'
       displayName: 'Install Node.js'
-    
+
+    - script: |
+        ls
+        pwd
+
+    - script: |
+        git clone --depth 1 https://github.com/cssjpn/blog-build-tools
+        cp -r blog-build-tools/package*.json .
+        cp -r blog-build-tools/gulpfile.js .
+        cp -r blog-build-tools/lib .
+        rm -rf blog-build-tools
+      displayName: 'Copy files from blog-build-tools to blog'
+
+    - script: |
+        ls
+        pwd
+
     - task: Npm@1
       inputs:
         command: 'install'
-        workingDir: '$(Build.Repository.LocalPath)'
       displayName: 'Install Npm'
 
     - script: |
-        sudo npm install -g hexo
-      displayName: 'Install hexo'
-
-    - script: |
-        hexo generate
-      displayName: 'Generate blog by hexo'
+        sudo npm run build
+      displayName: 'Generate blog'
     
     - task: ArchiveFiles@2
       inputs:
