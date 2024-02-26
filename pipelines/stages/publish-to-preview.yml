@@ -28,3 +28,4 @@ stages:
               workingDirectory: '$(Build.ArtifactStagingDirectory)'
               app_location: 'blog'
               azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_DEPLOYMENT_TOKEN)
+              production_branch: "main"
