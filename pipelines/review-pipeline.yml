@@ -1,15 +1,6 @@
 trigger:
 - '*'
 
-variables:
-  ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
-    rootpath: /blog-review/$(Build.SourceBranchName)
-  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
-    rootpath: /blog-review/pr$(System.PullRequest.PullRequestId)
-
 stages:
 - template: stages/generate-blog.yml
-  parameters:
-    rootpath: $(rootpath)
-
 - template: stages/publish-to-preview.yml

@@ -1,6 +1,6 @@
 stages:
 - stage:
-  displayName: 'Generate blog contents by cssjpn/blog-build-tools'
+  displayName: 'Generate blog contents'
   
   jobs:
   - job:
@@ -9,15 +9,11 @@ stages:
     steps:
     - checkout: self
       submodules: true
-      
+
     - task: NodeTool@0
       inputs:
         versionSpec: '14.x'
       displayName: 'Install Node.js'
-
-    - script: |
-        ls
-        pwd
 
     - script: |
         git clone --depth 1 https://github.com/cssjpn/blog-build-tools
@@ -26,10 +22,6 @@ stages:
         cp -r blog-build-tools/lib .
         rm -rf blog-build-tools
       displayName: 'Copy files from blog-build-tools to blog'
-
-    - script: |
-        ls
-        pwd
 
     - task: Npm@1
       inputs:
