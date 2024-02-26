@@ -13,16 +13,35 @@ stages:
         deploy:
           steps: 
           - task: ExtractFiles@1
+            displayName: 'Extract blog.zip'
             inputs:
               archiveFilePatterns: '$(Pipeline.Workspace)/drop/blog.zip'
               cleanDestinationFolder: false
               destinationFolder: '$(Agent.TempDirectory)/blog'
+
           - task: CopyFiles@2
+            displayName: 'Copy blog folder to staging dir'
             inputs:
               SourceFolder: '$(Agent.TempDirectory)/blog'
               Contents: '**'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
               OverWrite: true
+
+          - task: CopyFiles@2
+            displayName: 'Copy staticwebapp.config.json'
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)'
+              Contents: 'staticwebapp.config.json'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
+
+          - script: |
+              sed -i 's/ENTRA_ID_CLIENT_SECRET/$(ENTRA_ID_CLIENT_SECRET)/g' $(Build.ArtifactStagingDirectory)/blog/staticwebapp.config.json
+            displayName: 'Replace secrets in staticwebapp.config.json'
+
+          - script: |
+              cat $(Build.ArtifactStagingDirectory)/blog/staticwebapp.config.json
+            displayName: 'Debug'
+
           - task: AzureStaticWebApp@0
             inputs:
               workingDirectory: '$(Build.ArtifactStagingDirectory)'
