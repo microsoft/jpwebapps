@@ -1,4 +1,5 @@
-trigger: none
+trigger:
+- '*'
 
 variables:
   ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:

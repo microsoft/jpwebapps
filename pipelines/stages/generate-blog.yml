@@ -7,6 +7,9 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+    - checkout: self
+      submodules: true
+      
     - task: NodeTool@0
       inputs:
         versionSpec: '14.x'
