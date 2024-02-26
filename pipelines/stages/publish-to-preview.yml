@@ -12,6 +12,8 @@ stages:
       runOnce:
         deploy:
           steps: 
+          - checkout: self
+          
           - task: ExtractFiles@1
             displayName: 'Extract blog.zip'
             inputs:
@@ -26,6 +28,9 @@ stages:
               Contents: '**'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
               OverWrite: true
+
+          - script: |
+              ls
 
           - task: CopyFiles@2
             displayName: 'Copy staticwebapp.config.json'
