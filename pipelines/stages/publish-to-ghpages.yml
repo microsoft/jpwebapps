@@ -43,5 +43,5 @@ stages:
               git add .
               git commit -m "Publish from jpdsiblog pipeline, commit: $(Build.SourceVersion)"
               git log -1 --stat
-              git push https://github.com/jpdsi/blog.git
+              git push https://$(GITHUB_TOKEN)@github.com/jpdsi/blog.git
             displayName: 'Push to jpdsi/blog on GitHub'
