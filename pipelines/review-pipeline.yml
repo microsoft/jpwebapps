@@ -1,5 +1,5 @@
-trigger:
-- '*'
+trigger: 
+- none
 
 stages:
 - template: stages/generate-blog.yml
