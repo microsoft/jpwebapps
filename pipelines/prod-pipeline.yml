@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - 'pipeline-test-main'
+    - 'main'
   paths:
     exclude:
     - 'README.md'
