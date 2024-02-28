@@ -29,9 +29,6 @@ stages:
               TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
               OverWrite: true
 
-          - script: |
-              ls
-
           - task: CopyFiles@2
             displayName: 'Copy staticwebapp.config.json'
             inputs:
@@ -43,13 +40,19 @@ stages:
               sed -i 's/ENTRA_ID_CLIENT_SECRET/$(ENTRA_ID_CLIENT_SECRET)/g' $(Build.ArtifactStagingDirectory)/blog/staticwebapp.config.json
             displayName: 'Replace secrets in staticwebapp.config.json'
 
-          - script: |
-              cat $(Build.ArtifactStagingDirectory)/blog/staticwebapp.config.json
-            displayName: 'Debug'
-
           - task: AzureStaticWebApp@0
             inputs:
               workingDirectory: '$(Build.ArtifactStagingDirectory)'
               app_location: 'blog'
               azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_DEPLOYMENT_TOKEN)
               production_branch: "main"
+              deployment_environment: "$(System.PullRequest.PullRequestId)"
+            displayName: 'Deploy preview site to Azure Static Web App'
+
+          - task: PowerShell@2
+            inputs:
+              targetType: 'filePath'
+              filePath: 'post-preview-url-to-pr.ps1'
+              arguments: '-pullRequestId "$(System.PullRequest.PullRequestId)" -accessToken "$(System.AccessToken)"'
+            displayName: 'Post site url to PullRequest comment'
+
