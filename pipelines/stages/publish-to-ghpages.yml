@@ -7,10 +7,10 @@ stages:
   jobs:
   - deployment: 
     variables:
-    - group: PublishBlog
+    - group: blog-publish-to-prod
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'Prod'
+    environment: 'blog-prod'
     strategy:
       runOnce:
         deploy:
@@ -21,26 +21,27 @@ stages:
               rm -rf $(Build.ArtifactStagingDirectory)/blog/*
               ls -a $(Build.ArtifactStagingDirectory)/blog
             displayName: 'Git clone and remove all contents of the current version'
+
           - task: ExtractFiles@1
             inputs:
               archiveFilePatterns: '$(Pipeline.Workspace)/drop/blog.zip'
               cleanDestinationFolder: false
               destinationFolder: '$(Agent.TempDirectory)/blog'
+
           - task: CopyFiles@2
             inputs:
               SourceFolder: '$(Agent.TempDirectory)/blog'
               Contents: '**'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
               OverWrite: true
+
           - script: |
-              echo $PAT
+              echo $(GITHUB_TOKEN)
               cd $(Build.ArtifactStagingDirectory)/blog
               git config --global user.name  "jpdsiblog-automation"
               git config --global user.email "jpdsiblog-automation@users.noreply.github.com"
               git add .
               git commit -m "Publish from jpdsiblog pipeline, commit: $(Build.SourceVersion)"
               git log -1 --stat
-              git push https://$PAT@github.com/jpdsi/blog.git
+              git push https://$(GITHUB_TOKEN)@github.com/jpdsi/blog.git
             displayName: 'Push to jpdsi/blog on GitHub'
-            env:
-              PAT: $(JPDSIBlog_Automation)
