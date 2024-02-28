@@ -5,6 +5,12 @@ stages:
   - deployment: 
     variables:
     - group: blog-publish-to-preview
+    - name: preview-site-suffix
+      ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+        value: $(System.PullRequest.PullRequestId)
+      ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+        value: $(Build.SourceBranchName)
+      
     pool:
       vmImage: 'ubuntu-latest'
     environment: 'blog-preview'
@@ -46,7 +52,7 @@ stages:
               app_location: 'blog'
               azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_DEPLOYMENT_TOKEN)
               production_branch: "main"
-              deployment_environment: "$(System.PullRequest.PullRequestId)"
+              deployment_environment: $(preview-site-suffix)
             displayName: 'Deploy preview site to Azure Static Web App'
 
           - task: PowerShell@2
