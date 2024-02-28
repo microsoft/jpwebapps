@@ -1,0 +1,6 @@
+trigger: 
+- none
+
+stages:
+- template: stages/generate-blog.yml
+- template: stages/publish-to-preview.yml

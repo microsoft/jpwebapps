@@ -1,0 +1,47 @@
+stages:
+- stage:
+  displayName: 'Generate blog contents'
+  
+  jobs:
+  - job:
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - checkout: self
+      submodules: true
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '14.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        git clone --depth 1 https://github.com/cssjpn/blog-build-tools
+        cp -r blog-build-tools/package*.json .
+        cp -r blog-build-tools/gulpfile.js .
+        cp -r blog-build-tools/lib .
+        rm -rf blog-build-tools
+      displayName: 'Copy files from blog-build-tools to blog'
+
+    - task: Npm@1
+      inputs:
+        command: 'install'
+      displayName: 'Install Npm'
+
+    - script: |
+        sudo npm run build
+      displayName: 'Generate blog'
+    
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: 'public'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/blog.zip'
+        replaceExistingArchive: true
+      
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        artifact: 'drop'
+        publishLocation: 'pipeline'

@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+    - 'pipeline-test-main'
+  paths:
+    exclude:
+    - 'README.md'
+    - '.gitignore'
+
+variables:
+  rootpath: /blog/
+
+stages:
+- template: stages/generate-blog.yml
+  parameters:
+    rootpath: $(rootpath)
+
+- template: stages/publish-to-ghpages.yml
