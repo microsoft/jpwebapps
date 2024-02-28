@@ -52,7 +52,7 @@ stages:
           - task: PowerShell@2
             inputs:
               targetType: 'filePath'
-              filePath: 'post-preview-url-to-pr.ps1'
+              filePath: './pipelines/stages/post-preview-url-to-pr.ps1'
               arguments: '-pullRequestId "$(System.PullRequest.PullRequestId)" -accessToken "$(System.AccessToken)"'
             displayName: 'Post site url to PullRequest comment'
 
