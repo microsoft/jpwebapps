@@ -1,0 +1,64 @@
+stages:
+- stage:
+  displayName: 'Publish blog contents to Azure Static Web App for preview'
+  jobs:
+  - deployment: 
+    variables:
+    - group: blog-publish-to-preview
+    - name: preview-site-suffix
+      ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+        value: $(System.PullRequest.PullRequestId)
+      ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+        value: $(Build.SourceBranchName)
+      
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: 'blog-preview'
+    strategy:
+      runOnce:
+        deploy:
+          steps: 
+          - checkout: self
+          
+          - task: ExtractFiles@1
+            displayName: 'Extract blog.zip'
+            inputs:
+              archiveFilePatterns: '$(Pipeline.Workspace)/drop/blog.zip'
+              cleanDestinationFolder: false
+              destinationFolder: '$(Agent.TempDirectory)/blog'
+
+          - task: CopyFiles@2
+            displayName: 'Copy blog folder to staging dir'
+            inputs:
+              SourceFolder: '$(Agent.TempDirectory)/blog'
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
+              OverWrite: true
+
+          - task: CopyFiles@2
+            displayName: 'Copy staticwebapp.config.json'
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)'
+              Contents: 'staticwebapp.config.json'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/blog'
+
+          - script: |
+              sed -i 's/ENTRA_ID_CLIENT_SECRET/$(ENTRA_ID_CLIENT_SECRET)/g' $(Build.ArtifactStagingDirectory)/blog/staticwebapp.config.json
+            displayName: 'Replace secrets in staticwebapp.config.json'
+
+          - task: AzureStaticWebApp@0
+            inputs:
+              workingDirectory: '$(Build.ArtifactStagingDirectory)'
+              app_location: 'blog'
+              azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_DEPLOYMENT_TOKEN)
+              production_branch: "main"
+              deployment_environment: $(preview-site-suffix)
+            displayName: 'Deploy preview site to Azure Static Web App'
+
+          - task: PowerShell@2
+            condition: eq(variables['Build.Reason'],'PullRequest')
+            inputs:
+              targetType: 'filePath'
+              filePath: './pipelines/stages/post-preview-url-to-pr.ps1'
+              arguments: '-pullRequestId "$(System.PullRequest.PullRequestId)" -accessToken "$(System.AccessToken)"'
+            displayName: 'Post site url to PullRequest comment'

@@ -1,0 +1,12 @@
+trigger:
+  branches:
+    include:
+    - 'main'
+  paths:
+    exclude:
+    - 'README.md'
+    - '.gitignore'
+
+stages:
+- template: stages/generate-blog.yml
+- template: stages/publish-to-ghpages.yml
