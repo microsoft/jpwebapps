@@ -1,6 +1,6 @@
 ---
 title: Microsoft Edge の更新制御とサポート範囲について
-date: 2023-09-21
+date: 2024-03-01
 tags: 
   - Microsoft Edge
   - Edge の更新管理
