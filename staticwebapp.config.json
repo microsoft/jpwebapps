@@ -1,13 +1,13 @@
 {
-    "auth": {
-      "identityProviders": {
-        "azureActiveDirectory": {
-          "registration": {
-            "openIdIssuer": "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/v2.0",
-            "clientIdSettingName": "21499f19-43e4-4b46-881c-c6d9b97f6ed6",
-            "clientSecretSettingName": "ENTRA_ID_CLIENT_SECRET"
-          }
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47/v2.0",
+          "clientIdSettingName": "21499f19-43e4-4b46-881c-c6d9b97f6ed6",
+          "clientSecretSettingName": "ENTRA_ID_CLIENT_SECRET"
         }
       }
     }
   }
+}
