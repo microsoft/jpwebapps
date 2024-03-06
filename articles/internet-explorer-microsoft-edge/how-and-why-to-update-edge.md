@@ -490,12 +490,12 @@ https://docs.microsoft.com/en-us/deployedge/microsoft-edge-security-endpoints#do
 
 ### Edge や WebView2 Runtime がオフラインインストーラーで失敗する場合の切り分けについて
 
-過去に [ロールバックに失敗する場合について](#https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-rollback-edge/#%E3%83%AD%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E3%81%AB%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6) の記事において、自動更新を挟んでロールバックする場合は問題が発生する可能性の旨を述べておりました。
+過去に [ロールバックに失敗する場合について](https://jpdsi.github.io/blog/internet-explorer-microsoft-edge/how-to-rollback-edge/#%E3%83%AD%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF%E3%81%AB%E5%A4%B1%E6%95%97%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6) の記事において、自動更新を挟んでロールバックする場合は問題が発生する可能性の旨を述べておりました。
 
 一方で、ロールバックに寄らない単純な Edge や WebView2 Runtime の更新についても、稀にオフラインインストーラーで失敗する場合がございます。
 こちらは端末のインストール状態が正常ではない場合に発生するものであり、下記ドキュメントに記載された手順を実行することにより改善する可能性がございます。
 
-[プログラムのインストールまたは削除がブロックされる問題を解決する](#https://support.microsoft.com/ja-jp/windows/cca7d1b6-65a9-3d98-426b-e9f927e1eb4d)
+[プログラムのインストールまたは削除がブロックされる問題を解決する](https://support.microsoft.com/ja-jp/windows/cca7d1b6-65a9-3d98-426b-e9f927e1eb4d)
  
 当該ツールは、上記の URL から入手できる MicrosoftProgram_Install_and_Uninstall.meta.diagcab を現象発生環境に配置し、ダブル クリックすることで実行することが可能です。
 こちらを実施いただくことが可能な場合、まずは検証環境や影響が少ない環境にて実行いただくことを推奨いたします。
