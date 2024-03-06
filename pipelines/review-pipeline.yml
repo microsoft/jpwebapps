@@ -3,4 +3,7 @@ trigger:
 
 stages:
 - template: stages/generate-blog.yml
+  parameters:
+    rootpath: '/'
+
 - template: stages/publish-to-preview.yml
