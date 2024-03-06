@@ -9,5 +9,12 @@
         }
       }
     }
-  }
+  },
+  "routes": [
+    {
+      "route": "/blog/*",
+      "rewrite": "/{0}",
+      "statusCode": 301
+    }
+  ]
 }
