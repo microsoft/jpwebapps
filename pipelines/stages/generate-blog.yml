@@ -1,3 +1,6 @@
+parameters:
+  rootpath: '/blog'
+
 stages:
 - stage:
   displayName: 'Generate blog contents'
@@ -9,6 +12,15 @@ stages:
     steps:
     - checkout: self
       submodules: true
+
+    - script: |
+        cd $(Build.Repository.LocalPath)
+        sed -i -e "s|root: .*|root: ${{ parameters.rootpath }}|g" _config.yml
+        echo "================================"
+        echo " Content of updated _config.yml"
+        echo "================================"
+        cat _config.yml
+      displayName: 'Update _config.yml'
 
     - task: NodeTool@0
       inputs:
