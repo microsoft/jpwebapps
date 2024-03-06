@@ -13,15 +13,6 @@ stages:
     - checkout: self
       submodules: true
 
-    - script: |
-        cd $(Build.Repository.LocalPath)
-        sed -i -e "s|root: .*|root: ${{ parameters.rootpath }}|g" _config.yml
-        echo "================================"
-        echo " Content of updated _config.yml"
-        echo "================================"
-        cat _config.yml
-      displayName: 'Update _config.yml'
-
     - task: NodeTool@0
       inputs:
         versionSpec: '14.x'
@@ -34,6 +25,12 @@ stages:
         cp -r blog-build-tools/lib .
         rm -rf blog-build-tools
       displayName: 'Copy files from blog-build-tools to blog'
+
+    - script: |
+        cd $(Build.Repository.LocalPath)
+        sed -i 's|let blogRoot = "/blog";|let blogRoot = "${{ parameters.rootpath }}";|g' gulpfile.js
+        cat gulpfile.js
+      displayName: 'Update rootpath'
 
     - task: Npm@1
       inputs:
