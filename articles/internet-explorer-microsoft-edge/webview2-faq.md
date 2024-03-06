@@ -1,14 +1,15 @@
 ---
 title: WebView2 のよくあるご質問
-date: 2023-08-28
+date: 2024-03-04
 tags: 
   - Microsoft Edge
   - Microsoft WebView2 Runtime
   - WebView2
 ---
 
-<font color="red">2023/5/23 本記事公開</font>
-<font color="red">2023/8/28 更新 : WSUS による WebView2 Runtime の更新制御を追記しました。</font>
+<font color="red">2023/05/23 本記事公開</font>  
+<font color="red">2023/08/28 更新 : WSUS による WebView2 Runtime の更新制御を追記しました。</font> 
+<font color="red">2024/03/04 WebView2 Runtime に依存する Microsoft 365 製品を追記しました。</font>  
 
 みなさんこんにちは。日本マイクロソフトの IE/Edge サポートチームです。
 
@@ -27,6 +28,10 @@ WebView2 に関しては下記 URL 関連するドキュメントにおいて、
 ## 目次<!-- omit in toc -->
 - [WebView2 と WebView2 Runtime と WebView2 SDK はどのような違いがありますか](#WebView2-%E3%81%A8-WebView2-Runtime-%E3%81%A8-WebView2-SDK-%E3%81%AF%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E9%81%95%E3%81%84%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B)
 - [WebView2 はどのようなアプリケーションで利用されますか](#WebView2-%E3%81%AF%E3%81%A9%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%81%8B)
+  - [New Teams について](#New-Teams-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+  - [Dynamics 365 Commerce について](#Dynamics-365-Commerce-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+  - [Power BI Desktop について](#Power-BI-Desktop-%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
+  - [その他基本的な考え方について](#%E3%81%9D%E3%81%AE%E4%BB%96%E5%9F%BA%E6%9C%AC%E7%9A%84%E3%81%AA%E8%80%83%E3%81%88%E6%96%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
   - [WebView2 アプリケーションと WebView2 Runtime の互換性について](#WebView2-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%A8-WebView2-Runtime-%E3%81%AE%E4%BA%92%E6%8F%9B%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
   - [WebView2 Runtime と WebView2 SDK のバージョンの関係性について](#WebView2-Runtime-%E3%81%A8-WebView2-SDK-%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AE%E9%96%A2%E4%BF%82%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
 - [WebView2 のサポート範囲について](#WebView2-%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E7%AF%84%E5%9B%B2%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
@@ -92,11 +97,49 @@ Microsoft 製品においても様々な場面で利用されています。
 
 >> Office released support for WebView2 starting with Office version 16.0.13530.20424. This means if you have Office version 16.0.13530.20424 or later, and have the WebView2 runtime installed, Office will use WebView2 as the runtime for add-ins. This is an incredibly exciting step for the Office Platform — not only because of all the benefits of WebView2, but also because it provides for uniformity of the runtime for add-ins across various versions of Windows. 
 
-[Teams 2.0 Moves Away from Electron to Embrace Edge WebView2](https://techcommunity.microsoft.com/t5/microsoft-teams/teams-2-0-moves-away-from-electron-to-embrace-edge-webview2/m-p/2484565) に述べられておりますように Teams 2.0 は Electron ベースではなく WebView2 Runtime を利用しています。詳細は [Microsoft Teams: Advantages of the new architecture](https://techcommunity.microsoft.com/t5/microsoft-teams-blog/microsoft-teams-advantages-of-the-new-architecture/ba-p/3775704) をご確認ください。
-
 その他にも、[Microsoft Edge WebView2 and Microsoft 365 Apps](https://learn.microsoft.com/en-us/deployoffice/webview2-install) に述べられておりますように M365 アプリにおいて、ルーム検索やミーティング インサイトなどにおいて WebView2 が利用されている旨が記載されています。
 
 >> Microsoft 365 Apps is starting to provide new or improved features that rely on Microsoft Edge WebView2. For example, the Room Finder and the Meeting Insights features in Outlook. WebView2 uses Microsoft Edge as a rendering engine to display web-based features in a desktop application.
+
+### New Teams について
+
+[Introducing the new Microsoft Teams client](https://learn.microsoft.com/en-US/microsoftteams/platform/resources/teams-updates) にて述べられているように、新しい Teams に置いてはWebView2 Runtime が利用されるようになっています。
+
+>> The new Teams client uses the Evergreen version of Microsoft Edge WebView2 to ensure Teams client is always up to date with the latest fixes and improvements available in Microsoft Edge and Chromium.
+
+また、**New Teams での WebView2 Runtime の前提条件は最新版であることが述べられています。**
+
+[Upgrade to the new Teams using policies](https://learn.microsoft.com/en-US/microsoftteams/new-teams-deploy-using-policies?tabs=teams-admin-center#prerequisites)
+
+>> Webview2	Update to the most current version. Learn more: Enterprise management of WebView2 Runtimes
+
+### Dynamics 365 Commerce について
+***
+Dynamics 365Commerce も WebView2 Runtime を利用いたします。
+
+[Store Commerce app](https://learn.microsoft.com/en-US/dynamics365/commerce/dev-itpro/store-commerce) において以下が述べられています。
+
+>> The Store Commerce app is a Windows Presentation Foundation (WPF) shell application for Windows that uses the Microsoft Edge WebView2 control to render Store Commerce for web.
+
+### Power BI Desktop について
+***
+Power BI Desktop についても [Get Power BI Desktop](https://learn.microsoft.com/en-US/power-bi/fundamentals/desktop-get-the-desktop) において WebView2 Runtime を利用する旨の記載がございます。
+
+>> Minimum requirements
+The following list provides the minimum requirements to run Power BI Desktop:
+(…中略…)
+WebView2: If WebView2 wasn't automatically installed with Power BI Desktop or if it was uninstalled, download and run the installer for WebView2.
+
+また Power BI についてはサポートチームの Blog でも詳細にご案内しておりますのでご参考ください。
+
+[Power BI Desktop のコンポーネント変更について(Webview2)](#https://jpbap-sqlbi.github.io/blog/powerbi/pbi_desktop_webview2/)
+
+### その他基本的な考え方について
+***
+今後も WebView2 Runtime に依存する製品が増える場合がございます。
+
+すでに Windows11 においては WebView2 Runtime は標準搭載されており、Windows10 においても本来は自動的にインストールがなされるものであるため、
+依存するアプリ等の懸念がございます場合は、WebView2 Runtime のインストールをしていただくことでご安心いただけるかと存じます。
 
 ### WebView2 アプリケーションと WebView2 Runtime の互換性について
 ***
