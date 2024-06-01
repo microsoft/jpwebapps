@@ -6,7 +6,7 @@ param(
 $organizationUrl = "https://dev.azure.com/jpdsi-edge"
 $project = "edge-internals"
 $repositoryId = "1a248aad-a3b5-48fe-8410-8a31c4008db9"
-$siteUrl = "https://happy-bush-0e8a37100-${pullRequestId}.eastasia.4.azurestaticapps.net/"
+$siteUrl = "https://ambitious-sky-09416fe00-${pullRequestId}.eastasia.5.azurestaticapps.net/"
 
 # Create API Url
 $url = "${organizationUrl}/${project}/_apis/git/repositories/${repositoryId}/pullrequests/${pullRequestId}/threads?api-version=7.1-preview.1"
