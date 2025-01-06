@@ -14,7 +14,7 @@
 - [ASP.NET における SameSite Cookie について](./articles/web-apps/aspdotnet-samesitecookie.md)
 - [IIS の調査に必要な基本的なログ情報について](./articles/web-apps/LogCollection1.md)
 - [IIS の調査に必要な通信系のログ情報について](./articles/web-apps/LogCollection2.md)
-- [IIS の調査にパフォーマンス系のログ情報について (Perfview)](./articles/web-apps/LogCollection3.md)
+- [IIS の調査に必要なパフォーマンス系のログ情報について (Perfview)](./articles/web-apps/LogCollection3.md)
 - [IIS の調査に必要なダンプ ファイルの採取について (Debug Diagnostic Tool)](./articles/web-apps/LogCollection4.md)
 - [IIS の調査に必要な FTP の情報について](./articles/web-apps/LogCollection5.md)
 - [IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー](./articles/web-apps/iis-exclude-antivirus-scanning.md)
