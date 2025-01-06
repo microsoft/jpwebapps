@@ -1,5 +1,5 @@
 ---
-title: IIS の調査にパフォーマンス系のログ情報について (Perfview)
+title: IIS の調査に必要なパフォーマンス系のログ情報について (Perfview)
 date: 2020-01-31
 tags: 
   - Internet Information Services
