@@ -70,7 +70,7 @@ IIS サポート チームです！
    下記を実施することで、取得される失敗した要求トレース ログの 1 ファイルの最大サイズが 1MB になります
 
  
- >%windir%\system32\inetsrv\appcmd.exe set config -section:system.applicationHost/sites "/[name='Default Web Site].traceFailedRequestsLogging.maxLogFileSizeKB:1024" /commit:apphost 
+ > %windir%\system32\inetsrv\appcmd.exe set config -section:system.applicationHost/sites "/[name='Default Web Site'].traceFailedRequestsLogging.maxLogFileSizeKB:1024" /commit:apphost 
  ※サイト名 (name= の値) として Default Web Site を指定していますが、ご利用の Web サイト名に適宜ご変更ください。
 
 ### 事前準備 2
