@@ -405,7 +405,7 @@ https://docs.microsoft.com/en-us/deployedge/microsoft-edge-update-policies#autou
 
 詳細:
 
-- 値の範囲: 1 ~ 960 (最大で 16 時間になります)
+- 値の範囲: 0 ~ 43200
 
 #### UpdateSuppressed および AutoUpdateCheckPeriodMinutes が設定された場合
 
