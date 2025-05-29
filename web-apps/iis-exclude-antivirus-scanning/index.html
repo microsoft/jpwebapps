@@ -9,7 +9,7 @@
   <meta name="description" content="本記事は Technet Blog の更新停止に伴い、もとの 記事 からの複写となります。元の記事の最新の更新情報については、本内容をご参照ください。  今回は IIS の観点より、アンチ ウイルス スキャン対象から除外すべきフォルダーについてご紹介します。 アンチ ウィルス ソフトのようなセキュリティ関連ソフトや、バックアップ ソフト等の予期しない動作によって、IIS が動作するために必要なモ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IIS 観点でアンチ ウイルス スキャン対象から除外したいフォルダー">
-<meta property="og:url" content="https://jpdsi.github.io/blog/web-apps/iis-exclude-antivirus-scanning/index.html">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/web-apps/iis-exclude-antivirus-scanning/index.html">
 <meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
 <meta property="og:description" content="本記事は Technet Blog の更新停止に伴い、もとの 記事 からの複写となります。元の記事の最新の更新情報については、本内容をご参照ください。  今回は IIS の観点より、アンチ ウイルス スキャン対象から除外すべきフォルダーについてご紹介します。 アンチ ウィルス ソフトのようなセキュリティ関連ソフトや、バックアップ ソフト等の予期しない動作によって、IIS が動作するために必要なモ">
 <meta property="og:locale" content="ja_JP">
@@ -62,7 +62,7 @@
         
       </nav>
       <div id="search-form-wrap">
-        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpdsi.github.io/blog"></form>
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
       </div>
     </div>
     <div id="header-title" class="inner">
@@ -100,9 +100,9 @@
 </a>
         
         
-        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+adb5c0c0-adb5-5eb6-aaf4-6c199621b63f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BIIS+%E8%A6%B3%E7%82%B9%E3%81%A7%E3%82%A2%E3%83%B3%E3%83%81+%E3%82%A6%E3%82%A4%E3%83%AB%E3%82%B9+%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3%E5%AF%BE%E8%B1%A1%E3%81%8B%E3%82%89%E9%99%A4%E5%A4%96%E3%81%97%E3%81%9F%E3%81%84%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%83%BC%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Fiis-exclude-antivirus-scanning%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Fiis-exclude-antivirus-scanning.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Fiis-exclude-antivirus-scanning.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/microsoft/jpwebapps/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+adb5c0c0-adb5-5eb6-aaf4-6c199621b63f%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BIIS+%E8%A6%B3%E7%82%B9%E3%81%A7%E3%82%A2%E3%83%B3%E3%83%81+%E3%82%A6%E3%82%A4%E3%83%AB%E3%82%B9+%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3%E5%AF%BE%E8%B1%A1%E3%81%8B%E3%82%89%E9%99%A4%E5%A4%96%E3%81%97%E3%81%9F%E3%81%84%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%83%BC%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Fiis-exclude-antivirus-scanning%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Fiis-exclude-antivirus-scanning.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Fiis-exclude-antivirus-scanning.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpdsi.github.io/blog/web-apps/iis-exclude-antivirus-scanning/" data-id="cm6rjondz003shtp2go2uf9os" class="article-share-link">共有</a>
+        <a data-url="https://microsoft.github.io/jpwebapps/web-apps/iis-exclude-antivirus-scanning/" data-id="cm6rjondz003shtp2go2uf9os" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -174,7 +174,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li></ul>
 
         
-        <a href="https://github.com/jpdsi/blog/edit/main/articles/web-apps/iis-exclude-antivirus-scanning.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/microsoft/jpwebapps/edit/main/articles/web-apps/iis-exclude-antivirus-scanning.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>

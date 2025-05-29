@@ -9,16 +9,16 @@
   <meta name="description" content="こんにちは。IIS サポート チームです！   弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供させていただきます。  FREBDump について、今回はよくいただくご質問についてまとめました。 目次  FREBDump の検証手順について FREB の [トレースするコンテンツの指定] での [カスタム] の注意点について  FREBDump の検証手">
 <meta property="og:type" content="article">
 <meta property="og:title" content="失敗した要求トレースを契機とするメモリダンプ (FREBDump) のよくあるご質問">
-<meta property="og:url" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/index.html">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/index.html">
 <meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
 <meta property="og:description" content="こんにちは。IIS サポート チームです！   弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供させていただきます。  FREBDump について、今回はよくいただくご質問についてまとめました。 目次  FREBDump の検証手順について FREB の [トレースするコンテンツの指定] での [カスタム] の注意点について  FREBDump の検証手">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-02-46.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-00-59.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-20-13.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-22-28.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-12-53-09.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-13-20-16.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-02-46.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-00-59.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-20-13.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-22-28.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-12-53-09.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-13-20-16.png">
 <meta property="article:published_time" content="2021-05-26T15:00:00.000Z">
 <meta property="article:modified_time" content="2025-02-05T06:43:54.088Z">
 <meta property="article:author" content="Developer Support Internet Japan">
@@ -27,7 +27,7 @@
 <meta property="article:tag" content="FREBDump">
 <meta property="article:tag" content="FAQ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpdsi.github.io/blog/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-02-46.png">
+<meta name="twitter:image" content="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/frebdump-faq_2021-05-20-00-02-46.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
   
@@ -72,7 +72,7 @@
         
       </nav>
       <div id="search-form-wrap">
-        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpdsi.github.io/blog"></form>
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
       </div>
     </div>
     <div id="header-title" class="inner">
@@ -110,9 +110,9 @@
 </a>
         
         
-        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+fd22747f-bfea-5f85-9ac9-a90716217bda%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F%E8%A6%81%E6%B1%82%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9%E3%82%92%E5%A5%91%E6%A9%9F%E3%81%A8%E3%81%99%E3%82%8B%E3%83%A1%E3%83%A2%E3%83%AA%E3%83%80%E3%83%B3%E3%83%97+%28FREBDump%29+%E3%81%AE%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Ffrebdump-faq%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Ffrebdump-faq.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Ffrebdump-faq.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/microsoft/jpwebapps/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+fd22747f-bfea-5f85-9ac9-a90716217bda%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E5%A4%B1%E6%95%97%E3%81%97%E3%81%9F%E8%A6%81%E6%B1%82%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9%E3%82%92%E5%A5%91%E6%A9%9F%E3%81%A8%E3%81%99%E3%82%8B%E3%83%A1%E3%83%A2%E3%83%AA%E3%83%80%E3%83%B3%E3%83%97+%28FREBDump%29+%E3%81%AE%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E3%81%94%E8%B3%AA%E5%95%8F%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Ffrebdump-faq%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Ffrebdump-faq.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Ffrebdump-faq.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpdsi.github.io/blog/web-apps/frebdump-faq/" data-id="cm6rjondx003nhtp2e378fk4x" class="article-share-link">共有</a>
+        <a data-url="https://microsoft.github.io/jpwebapps/web-apps/frebdump-faq/" data-id="cm6rjondx003nhtp2e378fk4x" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -167,7 +167,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/FREBDump/" rel="tag">FREBDump</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li></ul>
 
         
-        <a href="https://github.com/jpdsi/blog/edit/main/articles/web-apps/frebdump-faq.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/microsoft/jpwebapps/edit/main/articles/web-apps/frebdump-faq.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>

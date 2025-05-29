@@ -9,17 +9,17 @@
   <meta name="description" content="本記事は Azure Tech Advent Calendar 2021 23 日目 の記事です。  Azure Web Apps でもオンプレ IIS の時に取っていた情報が同様に取れるのか…？-&gt; はい、実は色々取れるものもあります。例えば…という Blog です。 IIS サポートチームの大嶋です。 我々のチームでは普段オンプレミス製品である IIS や ASP.NET をサポートして">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？">
-<meta property="og:url" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/index.html">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/index.html">
 <meta property="og:site_name" content="Japan Developer Support Internet Team Blog">
 <meta property="og:description" content="本記事は Azure Tech Advent Calendar 2021 23 日目 の記事です。  Azure Web Apps でもオンプレ IIS の時に取っていた情報が同様に取れるのか…？-&gt; はい、実は色々取れるものもあります。例えば…という Blog です。 IIS サポートチームの大嶋です。 我々のチームでは普段オンプレミス製品である IIS や ASP.NET をサポートして">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/eventlog1.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/network-trace.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/network-trace2.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/network-trace3.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/dotnet-profiler1.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/dotnet-profiler2.png">
-<meta property="og:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/memory-dump1.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/eventlog1.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/network-trace.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/network-trace2.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/network-trace3.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/dotnet-profiler1.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/dotnet-profiler2.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/memory-dump1.png">
 <meta property="article:published_time" content="2021-12-22T15:00:00.000Z">
 <meta property="article:modified_time" content="2025-02-05T06:43:54.096Z">
 <meta property="article:author" content="Developer Support Internet Japan">
@@ -27,7 +27,7 @@
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="IIS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/eventlog1.png">
+<meta name="twitter:image" content="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/eventlog1.png">
   
     <link rel="alternate" href="../../atom.xml" title="Japan Developer Support Internet Team Blog" type="application/atom+xml">
   
@@ -72,7 +72,7 @@
         
       </nav>
       <div id="search-form-wrap">
-        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://jpdsi.github.io/blog"></form>
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
       </div>
     </div>
     <div id="header-title" class="inner">
@@ -110,9 +110,9 @@
 </a>
         
         
-        <a href="https://github.com/jpdsi/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+8bf321df-b22b-5bbf-b6b9-35eb69641c10%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Web+Apps+%E3%81%A7%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC+IIS+%E3%81%A8%E5%90%8C%E3%81%98%E3%82%88%E3%81%86%E3%81%AA%E6%83%85%E5%A0%B1%E3%81%AF%E5%8F%96%E3%82%8C%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%9F%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Fwebapps-diagnostic-tools%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Fwebapps-diagnostic-tools.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Fwebapps-diagnostic-tools.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        <a href="https://github.com/microsoft/jpwebapps/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+8bf321df-b22b-5bbf-b6b9-35eb69641c10%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+Web+Apps+%E3%81%A7%E3%82%AA%E3%83%B3%E3%83%97%E3%83%AC+IIS+%E3%81%A8%E5%90%8C%E3%81%98%E3%82%88%E3%81%86%E3%81%AA%E6%83%85%E5%A0%B1%E3%81%AF%E5%8F%96%E3%82%8C%E3%82%8B%E3%81%AE%E3%81%8B%EF%BC%9F%5D%28https%3A%2F%2Fjpdsi.github.io%2Fblog%2Fweb-apps%2Fwebapps-diagnostic-tools%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Fwebapps-diagnostic-tools.md%5D%28https%3A%2F%2Fgithub.com%2Fjpdsi%2Fblog%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Fwebapps-diagnostic-tools.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/" data-id="cm6rjone60042htp284nfg79w" class="article-share-link">共有</a>
+        <a data-url="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/" data-id="cm6rjone60042htp284nfg79w" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -132,7 +132,7 @@
 </ul>
 <p>皆様のトラブルシューティング時の今後の材料の 1 つとして、お力添えになればと思います。それでは、早速、具体的な手順の紹介に進みましょう。</p>
 <hr>
-<h2 id="1-Azure-Web-Apps-でアプリケーション-イベントログって見れるの？"><a href="#1-Azure-Web-Apps-でアプリケーション-イベントログって見れるの？" class="headerlink" title="1. Azure Web Apps でアプリケーション イベントログって見れるの？"></a>1. Azure Web Apps でアプリケーション イベントログって見れるの？</h2><p>見れます。アプリケーション イベントログは <a href="https://jpdsi.github.io/blog/web-apps/LogCollection1/">IIS の調査に必要な基本的な情報</a> の 1 つです。<br>以下の手順で Azure Portal 上でアプリケーション イベントログを確認することが可能です。</p>
+<h2 id="1-Azure-Web-Apps-でアプリケーション-イベントログって見れるの？"><a href="#1-Azure-Web-Apps-でアプリケーション-イベントログって見れるの？" class="headerlink" title="1. Azure Web Apps でアプリケーション イベントログって見れるの？"></a>1. Azure Web Apps でアプリケーション イベントログって見れるの？</h2><p>見れます。アプリケーション イベントログは <a href="https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/">IIS の調査に必要な基本的な情報</a> の 1 つです。<br>以下の手順で Azure Portal 上でアプリケーション イベントログを確認することが可能です。</p>
 <ol>
 <li>Azure Portal 上で Azure Web Apps のリソースページ にて [問題の診断と解決] ブレードを開く</li>
 <li>検索欄から [Application Event Logs] を開く</li>
@@ -140,7 +140,7 @@
 </ol>
 <p><img src="/blog/web-apps/webapps-diagnostic-tools/eventlog1.png" alt="Application Event Logs パネルの検索"></p>
 <hr>
-<h2 id="2-Azure-Web-Apps-でネットワーク-トレースって取れるの？"><a href="#2-Azure-Web-Apps-でネットワーク-トレースって取れるの？" class="headerlink" title="2. Azure Web Apps でネットワーク トレースって取れるの？"></a>2. Azure Web Apps でネットワーク トレースって取れるの？</h2><p>取れます。以下手順で Azure Portal 上の操作でネットワーク トレースを取得可能です。ネットワークトレースも <a href="https://jpdsi.github.io/blog/web-apps/LogCollection2/#2-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9">IIS の通信系の調査</a> に活用する可能性のある情報です。</p>
+<h2 id="2-Azure-Web-Apps-でネットワーク-トレースって取れるの？"><a href="#2-Azure-Web-Apps-でネットワーク-トレースって取れるの？" class="headerlink" title="2. Azure Web Apps でネットワーク トレースって取れるの？"></a>2. Azure Web Apps でネットワーク トレースって取れるの？</h2><p>取れます。以下手順で Azure Portal 上の操作でネットワーク トレースを取得可能です。ネットワークトレースも <a href="https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/#2-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9">IIS の通信系の調査</a> に活用する可能性のある情報です。</p>
 <p>ただし、こちらは意図的に事象が再現できる手順が確立出来ていることが前提です。</p>
 <ol>
 <li>Azure Portal 上で Azure Web Apps のリソースページ にて [問題の診断と解決] ブレードを開く</li>
@@ -156,7 +156,7 @@
 <p><img src="/blog/web-apps/webapps-diagnostic-tools/network-trace2.png" alt="Collect a Network Trace の取得"></p>
 <p><img src="/blog/web-apps/webapps-diagnostic-tools/network-trace3.png" alt="トレース取得後のイメージ"></p>
 <hr>
-<h2 id="3-Azure-Web-Apps-で-NET-の-Profiler-トレース-ETW-って取れるの？"><a href="#3-Azure-Web-Apps-で-NET-の-Profiler-トレース-ETW-って取れるの？" class="headerlink" title="3. Azure Web Apps で .NET の Profiler トレース (ETW) って取れるの？"></a>3. Azure Web Apps で .NET の Profiler トレース (ETW) って取れるの？</h2><p>取れます。以下手順で Azure Portal 上の操作で <a href="https://jpdsi.github.io/blog/web-apps/LogCollection3/">PerfView 等で取得・閲覧可能</a> な .NET の Profiler トレース (ETW) を取得可能です。</p>
+<h2 id="3-Azure-Web-Apps-で-NET-の-Profiler-トレース-ETW-って取れるの？"><a href="#3-Azure-Web-Apps-で-NET-の-Profiler-トレース-ETW-って取れるの？" class="headerlink" title="3. Azure Web Apps で .NET の Profiler トレース (ETW) って取れるの？"></a>3. Azure Web Apps で .NET の Profiler トレース (ETW) って取れるの？</h2><p>取れます。以下手順で Azure Portal 上の操作で <a href="https://microsoft.github.io/jpwebapps/web-apps/LogCollection3/">PerfView 等で取得・閲覧可能</a> な .NET の Profiler トレース (ETW) を取得可能です。</p>
 <p>ただし、意図的に事象が再現できる手順が確立出来ていることが前提です。<br>加えて、事前準備が必要です。</p>
 <p>&lt;事前準備&gt;</p>
 <ol>
@@ -202,7 +202,7 @@
 <p>まずはどういった事象なのかどういうときに発生するのか等を正確に把握したうえで、ぜひ活用してみてください。</p>
 <hr>
 <p>ちなみに、では普段我々のチームでは IIS 以外ではどういう製品を担当しているの？Azure 製品も関わる機会はあるの？という方はぜひ以下のチーム紹介の Blog も一読頂ければと思います！</p>
-<p><a href="https://jpdsi.github.io/blog/general/career1-dsi-technologies/"><Career>&lt;第一弾&gt; Developer Support Internet (DSI) ってどのような製品の技術サポートをしているの？</a></p>
+<p><a href="https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/"><Career>&lt;第一弾&gt; Developer Support Internet (DSI) ってどのような製品の技術サポートをしているの？</a></p>
 <p>では、本日のアドベントカレンダーのブログはこんなところで。<br>最近は急な気温の変化もありますのでお身体には気を付けて、良いクリスマスや年末年始をお過ごしください！</p>
 <hr>
 
@@ -221,7 +221,7 @@
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/IIS/" rel="tag">IIS</a></li></ul>
 
         
-        <a href="https://github.com/jpdsi/blog/edit/main/articles/web-apps/webapps-diagnostic-tools.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        <a href="https://github.com/microsoft/jpwebapps/edit/main/articles/web-apps/webapps-diagnostic-tools.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
         
     </footer>
   </div>
