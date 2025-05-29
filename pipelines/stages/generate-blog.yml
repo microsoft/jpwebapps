@@ -16,7 +16,7 @@ stages:
     - script: |
         cd $(Build.Repository.LocalPath)
         sed -i -e "s|root: .*|root: ${{ parameters.rootpath }}|g" _config.yml
-        sed -i -e "s|url: https://jpdsi.github.io/blog/|url: https://jpdsi.github.io${{ parameters.rootpath }}|g" _config.yml
+        sed -i -e "s|url: https://microsoft.github.io/jpwebapps/|url: https://microsoft.github.io${{ parameters.rootpath }}|g" _config.yml
         cat _config.yml
       displayName: 'Update root path in _config.yml'
 

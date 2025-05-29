@@ -34,7 +34,7 @@ IIS サポートチームの大嶋です。
 ---
 
 ## 1. Azure Web Apps でアプリケーション イベントログって見れるの？
-見れます。アプリケーション イベントログは [IIS の調査に必要な基本的な情報](https://jpdsi.github.io/blog/web-apps/LogCollection1/) の 1 つです。
+見れます。アプリケーション イベントログは [IIS の調査に必要な基本的な情報](https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/) の 1 つです。
 以下の手順で Azure Portal 上でアプリケーション イベントログを確認することが可能です。
 
 1. Azure Portal 上で Azure Web Apps のリソースページ にて [問題の診断と解決] ブレードを開く
@@ -46,7 +46,7 @@ IIS サポートチームの大嶋です。
 ---
 
 ## 2. Azure Web Apps でネットワーク トレースって取れるの？
-取れます。以下手順で Azure Portal 上の操作でネットワーク トレースを取得可能です。ネットワークトレースも [IIS の通信系の調査](https://jpdsi.github.io/blog/web-apps/LogCollection2/#2-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9) に活用する可能性のある情報です。
+取れます。以下手順で Azure Portal 上の操作でネットワーク トレースを取得可能です。ネットワークトレースも [IIS の通信系の調査](https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/#2-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF-%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9) に活用する可能性のある情報です。
 
 ただし、こちらは意図的に事象が再現できる手順が確立出来ていることが前提です。
 
@@ -67,7 +67,7 @@ IIS サポートチームの大嶋です。
 ---
 
 ## 3. Azure Web Apps で .NET の Profiler トレース (ETW) って取れるの？
-取れます。以下手順で Azure Portal 上の操作で [PerfView 等で取得・閲覧可能](https://jpdsi.github.io/blog/web-apps/LogCollection3/) な .NET の Profiler トレース (ETW) を取得可能です。
+取れます。以下手順で Azure Portal 上の操作で [PerfView 等で取得・閲覧可能](https://microsoft.github.io/jpwebapps/web-apps/LogCollection3/) な .NET の Profiler トレース (ETW) を取得可能です。
 
 ただし、意図的に事象が再現できる手順が確立出来ていることが前提です。
 加えて、事前準備が必要です。
@@ -140,7 +140,7 @@ IIS サポートチームの大嶋です。
 
 ちなみに、では普段我々のチームでは IIS 以外ではどういう製品を担当しているの？Azure 製品も関わる機会はあるの？という方はぜひ以下のチーム紹介の Blog も一読頂ければと思います！
 
-[<Career><第一弾> Developer Support Internet (DSI) ってどのような製品の技術サポートをしているの？](https://jpdsi.github.io/blog/general/career1-dsi-technologies/)
+[<Career><第一弾> Developer Support Internet (DSI) ってどのような製品の技術サポートをしているの？](https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/)
 
 では、本日のアドベントカレンダーのブログはこんなところで。
 最近は急な気温の変化もありますのでお身体には気を付けて、良いクリスマスや年末年始をお過ごしください！

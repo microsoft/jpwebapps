@@ -12,7 +12,7 @@ tags:
 DebugDiag のより新しい記事が以下のページにございます。  
 採取手順としては以下をご参考いただけますと幸いです。
 
-- DebugDiag の取得方法について :  https://jpdsi.github.io/blog/debugdiag/ 
+- DebugDiag の取得方法について :  https://microsoft.github.io/jpwebapps/debugdiag/ 
 
 ---
 
