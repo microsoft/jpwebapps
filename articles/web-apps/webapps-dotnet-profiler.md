@@ -9,7 +9,7 @@ tags:
 
 IIS / ASP.NET サポートチームの大嶋です。
 
-本稿では、先日投稿した [Azure Web Apps の .NET の Profiler トレース (ETW)](https://jpdsi.github.io/blog/web-apps/webapps-diagnostic-tools/#3-Azure-Web-Apps-%E3%81%A7-NET-%E3%81%AE-Profiler-%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9-ETW-%E3%81%A3%E3%81%A6%E5%8F%96%E3%82%8C%E3%82%8B%E3%81%AE%EF%BC%9F) の取得時間を既定値の 60 秒から変更して取得する方法について、ご紹介します。
+本稿では、先日投稿した [Azure Web Apps の .NET の Profiler トレース (ETW)](https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/#3-Azure-Web-Apps-%E3%81%A7-NET-%E3%81%AE-Profiler-%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B9-ETW-%E3%81%A3%E3%81%A6%E5%8F%96%E3%82%8C%E3%82%8B%E3%81%AE%EF%BC%9F) の取得時間を既定値の 60 秒から変更して取得する方法について、ご紹介します。
 
 .NET Profiler を取得したい再現リクエストの秒数が 60 秒より短かったり、逆に 60 秒より長いことが見込まれたりと、取得秒数を既定値から変更したい場面はあるかと思います。
 

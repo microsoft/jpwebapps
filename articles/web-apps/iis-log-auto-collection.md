@@ -12,7 +12,7 @@ IIS サポートチームの大嶋です。
 なお、本ツールは OSS となり、我々の技術サポートでサポートするツールではございません。
 もしツールでの採取に不明点・懸念点や上手く取得できない等ありましたら、まずは手動で以下の採取をご検討下さい。
 
-[IIS の調査に必要な基本的なログ情報について](https://jpdsi.github.io/blog/web-apps/LogCollection1/)
+[IIS の調査に必要な基本的なログ情報について](https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/)
 
 ---------------
 

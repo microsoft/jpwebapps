@@ -17,7 +17,7 @@ stages:
           steps: 
           - script: |
               cd $(Build.ArtifactStagingDirectory)
-              git clone -b ${{ parameters.branch }} https://github.com/jpdsi/blog.git
+              git clone -b ${{ parameters.branch }} https://github.com/microsoft/jpwebapps.git
               rm -rf $(Build.ArtifactStagingDirectory)/blog/*
               ls -a $(Build.ArtifactStagingDirectory)/blog
             displayName: 'Git clone and remove all contents of the current version'
@@ -43,5 +43,5 @@ stages:
               git add .
               git commit -m "Publish from jpdsiblog pipeline, commit: $(Build.SourceVersion)"
               git log -1 --stat
-              git push https://$(GITHUB_TOKEN)@github.com/jpdsi/blog.git
+              git push https://$(GITHUB_TOKEN)@github.com/microsoft/jpwebapps/blog.git
             displayName: 'Push to jpdsi/blog on GitHub'

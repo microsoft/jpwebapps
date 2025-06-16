@@ -13,10 +13,10 @@ IIS サポート チームの大嶋です！
 以前、IIS 上でのトラブル シューティングに役立つログの採取方法について、以下の 2 つの記事を書いてますが、現象の性質によってはこのログ以外の情報が必要となるログがございます。
 
 　IIS の調査に必要な基本的なログ情報について
-　https://jpdsi.github.io/blog/web-apps/LogCollection1/
+　https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/
 
 　IIS の調査に必要な通信系のログ情報について
-　https://jpdsi.github.io/blog/web-apps/LogCollection2/
+　https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/
 
 今回は、IIS のパフォーマンス系に関する現象の調査に役立つログをご紹介いたします。
 
