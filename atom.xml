@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Japan Developer Support Internet Team Blog</title>
+  <title>Japan WebApps Team Blog</title>
   
-  <subtitle>日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。</subtitle>
+  <subtitle>日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。</subtitle>
   <link href="https://jpdsi.github.io/blog/atom.xml" rel="self"/>
   
   <link href="https://jpdsi.github.io/blog/"/>
