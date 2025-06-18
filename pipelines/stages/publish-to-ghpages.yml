@@ -38,10 +38,10 @@ stages:
           - script: |
               echo $(GITHUB_TOKEN)
               cd $(Build.ArtifactStagingDirectory)/blog
-              git config --global user.name  "jpdsiblog-automation"
-              git config --global user.email "jpdsiblog-automation@users.noreply.github.com"
+              git config --global user.name  "jpwebappsblog-automation"
+              git config --global user.email "jpwebappsblog-automation@users.noreply.github.com"
               git add .
-              git commit -m "Publish from jpdsiblog pipeline, commit: $(Build.SourceVersion)"
+              git commit -m "Publish from jpwebappsblog pipeline, commit: $(Build.SourceVersion)"
               git log -1 --stat
               git push https://$(GITHUB_TOKEN)@github.com/microsoft/jpwebapps/blog.git
-            displayName: 'Push to jpdsi/blog on GitHub'
+            displayName: 'Push to jpwebapps/blog on GitHub'

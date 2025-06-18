@@ -5,9 +5,9 @@
 # Title (display)
 title: Japan Developer Support Internet Team Blog
 # Sub Title (display)
-subtitle: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。'
+subtitle: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。'
 # Description
-description: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) / Internet Explorer / Microsoft Edge に関するサポート情報のブログです。'
+description: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。'
 
 # Keywords
 keywords:
@@ -17,12 +17,8 @@ keywords:
   - Bot Framework
   - IIS
   - Internet Information Services
-  - IE
-  - Internet Explorer
-  - Edge
-  - Microsoft Edge
 
-author: Developer Support Internet Japan
+author: Web Developer Platform WebApps Japan
 
 # Tag (hexo helper)
 root_tag_generator:
@@ -31,8 +27,6 @@ root_tag_generator:
     - Internet Information Services
     - ASP.NET
     - ASP.NET Core
-    - Internet Explorer
-    - Microsoft Edge
   sub_tag_limit: 20
 
 # URL
