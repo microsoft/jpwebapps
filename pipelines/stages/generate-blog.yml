@@ -1,5 +1,5 @@
 parameters:
-  rootpath: '/blog'
+  rootpath: '/jpwebapps'
 
 stages:
 - stage:
@@ -47,7 +47,7 @@ stages:
         rootFolderOrFile: 'public'
         includeRootFolder: false
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/blog.zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/jpwebapps.zip'
         replaceExistingArchive: true
       
     - task: PublishPipelineArtifact@1

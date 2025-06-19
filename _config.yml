@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Title (display)
-title: Japan Developer Support Internet Team Blog
+title: Japan Web Developer Platform WebApps Team Blog
 # Sub Title (display)
 subtitle: '日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。'
 # Description
@@ -33,7 +33,7 @@ root_tag_generator:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://microsoft.github.io/jpwebapps/
 github:
-  url: https://github.com/microsoft/jpwebapps/blog/
+  url: https://github.com/microsoft/jpwebapps/
   posts_dir: articles
   default_branch: main
 
@@ -52,7 +52,7 @@ deploy:
   branch: gh-pages
   message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }} [skip ci]"
 
-root: /blog
+root: /jpwebapps
 permalink: :title/
 permalink_defaults: 
 
