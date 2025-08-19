@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Bot Framework Composer を用いた Azure Bot 構築 | Japan Web Developer Platform WebApps Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ちょっと早いですが Merry Christmas！Azure Bot Service サポート チームの石沢です！ 皆様、Bot Framework Composer をご存じですか？なんとこれを利用すればノンコーディングでも Bot を構築することが可能です！Bot でサービス構築したいけどコーディングはちょっと…という方でも GUI を操作するだけで構築完了してしまう優れものです。今回は初め">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bot Framework Composer を用いた Azure Bot 構築">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/index.html">
+<meta property="og:site_name" content="Japan Web Developer Platform WebApps Team Blog">
+<meta property="og:description" content="ちょっと早いですが Merry Christmas！Azure Bot Service サポート チームの石沢です！ 皆様、Bot Framework Composer をご存じですか？なんとこれを利用すればノンコーディングでも Bot を構築することが可能です！Bot でサービス構築したいけどコーディングはちょっと…という方でも GUI を操作するだけで構築完了してしまう優れものです。今回は初め">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-01.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-02.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-03.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-04.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-05.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-06.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-07.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-08.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-09.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-10.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-11.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-12.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-13.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-14.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-15.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-16.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-17.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-18.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-18.png">
+<meta property="article:published_time" content="2021-12-07T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-19T02:33:38.356Z">
+<meta property="article:author" content="Web Developer Platform WebApps Japan">
+<meta property="article:tag" content="Azure Bot Service">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-01.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Web Developer Platform WebApps Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/jpwebapps/">Home</a>
+        
+          <a class="main-nav-link" href="/jpwebapps/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Web Developer Platform WebApps Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-azure-bot-service/bot-merry-christmas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bot Framework Composer を用いた Azure Bot 構築
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2021-12-07T15:00:00.000Z" itemprop="datePublished">2021-12-08</time>
+</a>
+        
+        
+        
+        <a href="https://github.com/microsoft/jpwebapps/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+4c851aea-23aa-5407-aa50-800b2e609ff8%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BBot+Framework+Composer+%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F+Azure+Bot+%E6%A7%8B%E7%AF%89%5D%28https%3A%2F%2Fmicrosoft.github.io%2Fjpwebapps%2Fazure-bot-service%2Fbot-merry-christmas%2F%29%0A*+Content+Source%3A+%5Barticles%2Fazure-bot-service%2Fbot-merry-christmas.md%5D%28https%3A%2F%2Fgithub.com%2Fmicrosoft%2Fjpwebapps%2Fblob%2Fmain%2Farticles%2Fazure-bot-service%2Fbot-merry-christmas.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/" data-id="cmehxkhxd0004po6c9bep4mh8" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ちょっと早いですが Merry Christmas！Azure Bot Service サポート チームの石沢です！</p>
+<p>皆様、Bot Framework Composer をご存じですか？なんとこれを利用すればノンコーディングでも Bot を構築することが可能です！<br>Bot でサービス構築したいけどコーディングはちょっと…という方でも GUI を操作するだけで構築完了してしまう優れものです。<br>今回は初めての Bot Framework Composer を利用される方向けに、Merry Christmas と話しかけると Merry Christmas と返してくれる、こちらから話しかけた内容をそのままオウム返ししてくる Bot を Azure 上に構築してみます。</p>
+<hr>
+<p>Bot Framework Composer を利用するにあたって、以下のソフトウェアのインストールする必要があります。<br>本記事では、Node.js は 17.2.0、.NET Core SDK は 3.1.21、Composer は 2.0.0 バージョンを使用しました。</p>
+<p>・Node.js (<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a>)</p>
+<p>・.NET Core SDK 3.1 以降 (<a target="_blank" rel="noopener" href="https://dotnet.microsoft.com/download/dotnet/3.1">https://dotnet.microsoft.com/download/dotnet/3.1</a>)</p>
+<p>・Composer (<a target="_blank" rel="noopener" href="https://aka.ms/bf-composer-download-win">https://aka.ms/bf-composer-download-win</a>)</p>
+<p>参考：Install Bot Framework Composer - Prerequisites<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/composer/install-composer?tabs=windows#prerequisites">https://docs.microsoft.com/en-us/composer/install-composer?tabs=windows#prerequisites</a></p>
+<hr>
+<h1 id="1-Composer-を起動して-Bot-を作成しよう！"><a href="#1-Composer-を起動して-Bot-を作成しよう！" class="headerlink" title="1. Composer を起動して Bot を作成しよう！"></a>1. Composer を起動して Bot を作成しよう！</h1><p>それでは早速インストールした Composer を起動しましょう。<br>Composer を起動すると以下の画面が表示されますので、おもむろに [+ Create New] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-01.png" alt="Step1"></p>
+<p>表示された画面で、最もシンプルな Bot のテンプレートである “Empty Bot” を選択して、[Next] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-02.png" alt="Step2"></p>
+<p>次の画面ではこの Bot のプロジェクトに名前を付けてあげましょう。あわせて Bot が保存されるフォルダも指定してあげてください。<br>ここでは Runtime type は “Azure Web App” が設定されていることを確認して、[Create] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-03.png" alt="Step3"></p>
+<hr>
+<h1 id="2-Bot-を編集しよう！"><a href="#2-Bot-を編集しよう！" class="headerlink" title="2. Bot を編集しよう！"></a>2. Bot を編集しよう！</h1><p>さて、Create が無事完了すると以下のような画面に遷移します。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-04.png" alt="Step4"></p>
+<p>ここで左のナビゲーションパネルから、”Unknown intent” をクリックして、さらに “Send a response” をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-05.png" alt="Step5"></p>
+<p>“Unknown intent” では、ユーザーの入力が Bot 側でよくわからないものと認識された場合の処理フローが示されています。<br>今回の “Empty Bot” テンプレートの場合は、入力を認識するような処理は入っていないので、ユーザーの全ての入力がこのフローに入ります。<br>なんとなく想像できるのではないかと思いますが、ここでユーザーの入力をそのまま返すようにフローを書き替えるだけで、Merry Christmas という入力にたいして Merry Christmas という応答を返す Bot が完成します。<br>フローを書き替えるためには、まず右のパネルに表示された “Add alternative” をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-06.png" alt="Step6"></p>
+<p>ここで Bot が返すテキストを設定できるのですが、入力されたユーザーのテキストを示すプロパティを選択します。”{x}” をクリックして、”turn.activity.text” を選択します。 </p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-07.png" alt="Step7"></p>
+<p>選択できたら、”Sorry, I didn’t get that.” というレスポンスは不要なので、”Remove variation” をクリックして削除してしまいましょう。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-08.png" alt="Step8"></p>
+<p>これでオウム返しする Bot が完成しました！</p>
+<hr>
+<h1 id="3-Bot-を-ローカルでテストしよう！"><a href="#3-Bot-を-ローカルでテストしよう！" class="headerlink" title="3. Bot を ローカルでテストしよう！"></a>3. Bot を ローカルでテストしよう！</h1><p>Composer ではローカルでのテストも容易に行うことができます！<br>後日記事を追記いたしますので、今しばらくお待ちください。</p>
+<hr>
+<h1 id="4-Bot-を-Publishしよう！"><a href="#4-Bot-を-Publishしよう！" class="headerlink" title="4. Bot を Publishしよう！"></a>4. Bot を Publishしよう！</h1><p>さて、あとは作成した Bot を Azure 上に Deploy して Publish するだけです。<br>これも GUI でぽちぽちするだけでできます。Composer の雲のマークのメニューを選択して、”Publishing profile” タブを選択して、さらに [Add new] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-09.png" alt="Step9"></p>
+<p>ここで Publish 用のプロファイルを作成します。Name は任意のものを入力し、Publishing target には “Publish bot to Azure” を選択して、[Next] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-10.png" alt="Step10"><br>次に Bot を動作させるために新しいリソースを作成するか、既存のリソースをインポートするかを選択します。<br>ここでは、新しくリソースを作成するため “Create new resources” を選択して、[Next] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-11.png" alt="Step11"></p>
+<p>Azure アカウントへのログインが求められるのでログインします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-12.png" alt="Step12"></p>
+<p>ログインできたら、利用するサブスクリプションや Resource group についての設定を行い、[Next] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-13.png" alt="Step13"></p>
+<p>次に追加するリソースを選択します。今回の目的の通り動作させるだけであれば “Required” 以外は追加しなくても問題ありません。</p>
+<p>確認画面が出てくるので、問題なさそうであれば [Create] をクリックして、リソースのデプロイが完了するのを待ちましょう。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-14.png" alt="Step14"></p>
+<p>以下のようなメッセージが表示されれば OK です！</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-15.png" alt="Step15"></p>
+<p>次に “Publish” タブを選択してから、パブリッシュしたい Bot にチェックを入れて、先ほど作成したプロファイルを “Publish target” に設定したら [Publish selected bots] をクリックします。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-16.png" alt="Step16"></p>
+<p>次の画面では、Comments に任意のコメントを入れて、[Okay] をクリックして Publish の完了を待ちましょう。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-17.png" alt="Step17"></p>
+<p>Publish が成功しているかどうかは、Message に ”Success” と表示されていることで確認できます。</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-18.png" alt="Step18"></p>
+<hr>
+<h1 id="5-Bot-の動作確認をしよう！"><a href="#5-Bot-の動作確認をしよう！" class="headerlink" title="5. Bot の動作確認をしよう！"></a>5. Bot の動作確認をしよう！</h1><p>ここでは詳細は割愛しますが、Azure Portal にアクセスして、作成した Azure Bot リソースから、”Web チャットでテスト” で実際に動作させてみるのが最も簡単な動作確認方法でしょう。<br>当初の目的であった “Merry Christmas と話しかけると Merry Christmas と返してくれる Bot を Azure 上に構築する” が達成できたことを確認できます！</p>
+<p><img src="/jpwebapps/azure-bot-service/bot-merry-christmas/bot-merry-christmas-18.png" alt="Step19"></p>
+<p>というわけで 1 つもコーディングせずに Bot の構築ができてしまいました！<br>今回は以上です。それでは、また次回！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li></ul>
+
+        
+        <a href="https://github.com/microsoft/jpwebapps/edit/main/articles/azure-bot-service/bot-merry-christmas.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../azure-web-pubsub/AzureWebPubSub-for-beginner/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Azure Web PubSub サービスの利用
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../general/career2-intern-experience/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">&lt;Career&gt;&lt;第二弾&gt; インターンから見た Microsoft と Developer Support Internet (DSI) チーム (2021)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../web-apps/iis-log-auto-collection/">IIS の基本的な情報の自動採取について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/webapps-dotnet-profiler/">Azure Web Apps の .NET Profiler の取得時間を変更する方法について</a>
+          </li>
+        
+          <li>
+            <a href="../../web-apps/webapps-diagnostic-tools/">Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？</a>
+          </li>
+        
+          <li>
+            <a href="../../azure-web-pubsub/AzureWebPubSub-for-beginner/">Azure Web PubSub サービスの利用</a>
+          </li>
+        
+          <li>
+            <a href="">Bot Framework Composer を用いた Azure Bot 構築</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Portal/" rel="tag">Azure Portal</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Web-PubSub-Service/" rel="tag">Azure Web PubSub Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/DebugDiag/" rel="tag">DebugDiag</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FREB/" rel="tag">FREB</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FREBDump/" rel="tag">FREBDump</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IIS/" rel="tag">IIS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Virtual-Directory/" rel="tag">Virtual Directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WCF/" rel="tag">WCF</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" rel="tag">インターンシップ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" rel="tag">ハンドラーマッピング</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" rel="tag">料金プラン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%A8%AD%E5%AE%9A/" rel="tag">設定</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">10</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-App-Service">Azure App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-Portal">Azure Portal</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3">料金プラン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E8%A8%AD%E5%AE%9A">設定</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">18</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-Bot-Service">Azure Bot Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/DebugDiag">DebugDiag</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FREB">FREB</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FREBDump">FREBDump</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Virtual-Directory">Virtual Directory</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/WCF">WCF</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">10</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/01/">2022 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/12/">2021 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/05/">2021 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/04/">2021 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/09/">2020 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/05/">2020 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 13.33px;">ASP.NET</a> <a href="../../tags/ASP-NET-Core/" style="font-size: 10px;">ASP.NET Core</a> <a href="../../tags/Azure-App-Service/" style="font-size: 13.33px;">Azure App Service</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 16.67px;">Azure Bot Service</a> <a href="../../tags/Azure-Portal/" style="font-size: 10px;">Azure Portal</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/Azure-Web-PubSub-Service/" style="font-size: 10px;">Azure Web PubSub Service</a> <a href="../../tags/C/" style="font-size: 15px;">C#</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/DebugDiag/" style="font-size: 10px;">DebugDiag</a> <a href="../../tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="../../tags/FREB/" style="font-size: 10px;">FREB</a> <a href="../../tags/FREBDump/" style="font-size: 11.67px;">FREBDump</a> <a href="../../tags/IIS/" style="font-size: 11.67px;">IIS</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 20px;">Internet Information Services</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 10px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Virtual-Directory/" style="font-size: 10px;">Virtual Directory</a> <a href="../../tags/WCF/" style="font-size: 10px;">WCF</a> <a href="../../tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" style="font-size: 10px;">インターンシップ</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 11.67px;">チーム紹介</a> <a href="../../tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" style="font-size: 10px;">ハンドラーマッピング</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 18.33px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" style="font-size: 10px;">料金プラン</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a> <a href="../../tags/%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">設定</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="https://privacy.microsoft.com/ja-jp/privacystatement" target="_blank" rel=”noopener”>Privacy & Cookies</a> |  
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/copyright" target="_blank" rel=”noopener”>Terms of use</a> |
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/trademarks" target="_blank" rel=”noopener”>Trademarks</a> |
+      &copy; 2025 Web Developer Platform WebApps Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

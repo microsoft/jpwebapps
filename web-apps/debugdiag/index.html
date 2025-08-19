@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Debug Diagnostics Tool (DebugDiag) の取得方法について | Japan Web Developer Platform WebApps Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは。IIS サポート チームです！   弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供しております。今回は Debug Diagnostics Tool (以降 DebugDiag) によりメモリダンプを取得する手順についてご説明いたします。 ※ なお、Debug Diagnostic Tool ツール自体のサポートは私共技術サポートではご提供">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debug Diagnostics Tool (DebugDiag) の取得方法について">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/index.html">
+<meta property="og:site_name" content="Japan Web Developer Platform WebApps Team Blog">
+<meta property="og:description" content="こんにちは。IIS サポート チームです！   弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供しております。今回は Debug Diagnostics Tool (以降 DebugDiag) によりメモリダンプを取得する手順についてご説明いたします。 ※ なお、Debug Diagnostic Tool ツール自体のサポートは私共技術サポートではご提供">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-23-23-43-07.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-23-23-57-29.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-00-06-11.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-00-17-36.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-18-47.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-01-53-13.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-19-43.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-25-05.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-34-14.png">
+<meta property="article:published_time" content="2021-06-28T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-19T02:33:38.385Z">
+<meta property="article:author" content="Web Developer Platform WebApps Japan">
+<meta property="article:tag" content="ログ採取">
+<meta property="article:tag" content="Internet Information Services">
+<meta property="article:tag" content="DebugDiag">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-23-23-43-07.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Web Developer Platform WebApps Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/jpwebapps/">Home</a>
+        
+          <a class="main-nav-link" href="/jpwebapps/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Web Developer Platform WebApps Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-web-apps/debugdiag" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Debug Diagnostics Tool (DebugDiag) の取得方法について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2021-06-28T15:00:00.000Z" itemprop="datePublished">2021-06-29</time>
+</a>
+        
+        
+        
+        <a href="https://github.com/microsoft/jpwebapps/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+d99eb33d-4ef3-5d87-b021-877303bdef99%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BDebug+Diagnostics+Tool+%28DebugDiag%29+%E3%81%AE%E5%8F%96%E5%BE%97%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fmicrosoft.github.io%2Fjpwebapps%2Fweb-apps%2Fdebugdiag%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2Fdebugdiag.md%5D%28https%3A%2F%2Fgithub.com%2Fmicrosoft%2Fjpwebapps%2Fblob%2Fmain%2Farticles%2Fweb-apps%2Fdebugdiag.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/" data-id="cmehxkhy20018po6cgb9hbz32" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは。IIS サポート チームです！  </p>
+<p>弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供しております。<br>今回は Debug Diagnostics Tool (以降 DebugDiag) によりメモリダンプを取得する手順についてご説明いたします。</p>
+<p>※ なお、Debug Diagnostic Tool ツール自体のサポートは私共技術サポートではご提供しておりません。<br>そのため、なお、Debug Diagnostic Tool ツール自体のトラブルシューティングやツールの詳細なご紹介等はご支援できませんことをご了承ください。</p>
+<h2 id="DebugDiag-とは"><a href="#DebugDiag-とは" class="headerlink" title="DebugDiag とは"></a>DebugDiag とは<!-- omit in toc --></h2><p>DebugDiag とはメモリダンプを取得・解析するための強力なツールです。<br>DebugDiag は我々 IIS サポートチームのみならず、別のサポートチームにおいてでも様々なシナリオでダンプを取得し、そのダンプを解析することで日々お客様の問題解決に貢献しております。</p>
+<h3 id="DebugDiag-のメリット"><a href="#DebugDiag-のメリット" class="headerlink" title="DebugDiag のメリット"></a>DebugDiag のメリット<!-- omit in toc --></h3><p>DebugDiag でのダンプ採取のメリットとして、柔軟なタイミングかつ、メモリの領域を指定して取得することが上げられます。</p>
+<p>取得するメモリの領域の指定は以下 2 つが可能です。  </p>
+<ul>
+<li><strong>User Fulldump</strong> : プロセスの全領域を .dmp としてダンプします。サイズは大きいものの詳細な分析が行えます。</li>
+<li><strong>User Minidump</strong> : プロセスの一部領域 を .dmp としてダンプします。サイズは小さいものの、限られた分析しか行なえません。</li>
+</ul>
+<p>なお通常、お問い合わせの調査には、前者の <strong>User Fulldump</strong> の取得をお願いしております。  </p>
+<p>また取得するタイミングについても以下のように柔軟に変更できます。  </p>
+<ul>
+<li>イベントログにアプリケーションの例外コードが記録されたタイミングで取得する</li>
+<li>イベントログに記録された文字列を起点として取得する</li>
+</ul>
+<p>またそれ以外のメリットとして、ログオフした状態であってもバックグラウンドで DebugDiag を実行可能です。</p>
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次 "></a>目次 <!-- omit in toc --></h2><ul>
+<li><a href="#1-%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6">1. 前提条件</a><ul>
+<li><a href="#1-1-%E4%BA%8B%E5%89%8D%E3%81%AB%E6%BA%96%E5%82%99%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%82%82%E3%81%AE%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">1.1. 事前に準備が必要なものについて</a></li>
+</ul>
+</li>
+<li><a href="#2-DebugDiag-%E3%81%AE%E5%8F%96%E5%BE%97%E8%A8%AD%E5%AE%9A">2. DebugDiag の取得設定</a><ul>
+<li><a href="#2-1-Enable-Disable-Performance-Logging-%E3%81%AE-%E7%84%A1%E5%8A%B9%E5%8C%96">2.1. Enable Disable Performance Logging の 無効化</a></li>
+<li><a href="#2-2-Rule-Type-%E3%81%A8-Target-Type-%E3%81%AE%E9%81%B8%E6%8A%9E">2.2. Rule Type と Target Type の選択</a></li>
+</ul>
+</li>
+<li><a href="#3-%E5%AF%BE%E8%B1%A1%E3%81%A8%E3%81%AA%E3%82%8B-DebugDiag-%E3%81%AE%E3%82%BF%E3%83%BC%E3%82%B2%E3%83%83%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97-%E3%81%8C-A-specific-IIS-web-application-pool-%E3%81%AE%E5%A0%B4%E5%90%88">3. 対象となる DebugDiag のターゲットタイプ が A specific IIS web application pool の場合</a><ul>
+<li><a href="#3-1-%E3%83%80%E3%83%B3%E3%83%97%E3%81%AE%E5%8F%96%E5%BE%97%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0-%E3%81%8C-First-Chance-%E3%81%AE%E5%A0%B4%E5%90%88">3.1. ダンプの取得タイミング が First Chance の場合</a></li>
+</ul>
+</li>
+<li><a href="#4-%E3%83%80%E3%83%B3%E3%83%97%E7%94%9F%E6%88%90%E5%BE%8C%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E5%8F%96%E5%BE%97">4. ダンプ生成後ファイルの取得</a></li>
+<li><a href="#5-DebugDiag-%E3%81%AE%E3%82%A2%E3%83%B3%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">5. DebugDiag のアンインストール方法について</a></li>
+<li><a href="#6-DebugDiag-%E3%81%AE%E6%A4%9C%E8%A8%BC%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">6. DebugDiag の検証方法について</a><ul>
+<li><a href="#6-1-%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6">6.1. 前提条件</a></li>
+<li><a href="#6-2-%E4%BE%8B%E5%A4%96%E3%82%92%E6%84%8F%E5%9B%B3%E7%9A%84%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%95%E3%81%9B%E3%82%8B%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E9%85%8D%E7%BD%AE">6.2. 例外を意図的に発生させるアプリケーションの配置</a></li>
+<li><a href="#6-3-%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95">6.3. 確認方法</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="1-前提条件"><a href="#1-前提条件" class="headerlink" title="1. 前提条件"></a>1. 前提条件</h2><h3 id="1-1-事前に準備が必要なものについて"><a href="#1-1-事前に準備が必要なものについて" class="headerlink" title="1.1. 事前に準備が必要なものについて"></a>1.1. 事前に準備が必要なものについて</h3><p>DebugDiag はインストールが必要かつ、フォアグラウンドまたはバックグラウンドで実行するツールになります。</p>
+<p>64bit 版の DebugDiag をインストールします。<br>※ OS が 32bit 版のみ 32bit 版の DebugDiag をインストールしてください。</p>
+<ul>
+<li>64bit 版の DebugDiag : <a target="_blank" rel="noopener" href="http://debugdiag.com/">Debug Diagnostic Tool v2 Update 3</a></li>
+<li>32bit 版の DebugDiag : <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=49924">Debug Diagnostic Tool v2 Update 2</a></li>
+</ul>
+<p>.msi ファイルをダウンロードできたら、以下の手順でインストールします。</p>
+<ul>
+<li>ダウンロードした .msi ファイルを起動します。  </li>
+<li>起動後、[Next] を押し、ライセンスを承諾します。  </li>
+<li>デフォルトのフォルダパスは C:\Program Files\DebugDiag ですので、それ以外を設定したい場合は [Browse…] から任意のパスに変更します。</li>
+<li>[Next]を押し、[Install] を実行してください。なお<strong>インストールには管理者権限が必要</strong>です。</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-23-23-43-07.png" alt="DebugDiag のインストール設定画面の図"></p>
+<p>これで DebugDiag のインストールは終了です。</p>
+<h2 id="2-DebugDiag-の取得設定"><a href="#2-DebugDiag-の取得設定" class="headerlink" title="2. DebugDiag の取得設定"></a>2. DebugDiag の取得設定</h2><ul>
+<li>[すべてのプログラム] - [Debug Diagnostic Tool 2.0] - [Debug Diagnostics Tool 2.0 Collection] を起動します。  </li>
+<li>[Select Rule Type] 画面が自動的に表示された場合、一旦 [キャンセル] ボタンを押してダイアログを閉じます。</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-23-23-57-29.png" alt="DebugDiag 2 Collection の起動画面"></p>
+<h3 id="2-1-Enable-Disable-Performance-Logging-の-無効化"><a href="#2-1-Enable-Disable-Performance-Logging-の-無効化" class="headerlink" title="2.1. Enable Disable Performance Logging の 無効化"></a>2.1. Enable Disable Performance Logging の 無効化</h3><ul>
+<li>Debug Diagnostics Tool の [Tools] - [Options And Settings] メニューをクリックします。  </li>
+<li>[Performance log] - [Enable/Disable Performance Logging] にて、[Disable Performance Counter Data Logging] のラジオボタンにチェックがある状態にして、[OK] ボタンを押して閉じます。</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-00-06-11.png" alt="Enable-Disable Performance Logging の無効化の設定図"></p>
+<h3 id="2-2-Rule-Type-と-Target-Type-の選択"><a href="#2-2-Rule-Type-と-Target-Type-の選択" class="headerlink" title="2.2. Rule Type と Target Type の選択"></a>2.2. Rule Type と Target Type の選択</h3><p>この辺りから取得する対象により設定方法が変わります。</p>
+<p>弊社から適宜 “&lt;&gt;” 内の設定項目が指定された場合はそちらに従ってください。<br>もし特に指定がない場合や、こちらのブログを参考に DebugDiag の取得を調査している場合は、<br>例に従うことでアクセス違反発生時にダンプを取得する場合の設定手順をお試しいただけます。</p>
+<ul>
+<li>ウィンドウ下部の [Add Rules] ボタンを押します。表示された [Select Rule Type] 画面にて、&lt;対象となる DebugDiag のルールタイプ&gt; を選択し、[次へ] ボタンを押します。  </li>
+<li>次に、[Select Target Type] 画面にて、&lt;対象となる DebugDiag のターゲットタイプ&gt; を選択し、[次へ] をクリックします。  </li>
+</ul>
+<p>※ 例として、アクセス違反発生時にダンプを取得する場合は、</p>
+<ul>
+<li>[Select Rule Type] には [Crash] を選択し、  </li>
+<li>[Select Target Type] には [A specific IIS web application pool] を選択してください。  </li>
+</ul>
+<p>以下の画像のように設定をすることで、 Access Violation による例外発生によるダンプの取得を行います。  </p>
+<!-- 
+[Crash] 以外についてはGUI上の表示も変わってくることから、
+今回の説明は Crash 後の選択に合わせた形でよいと考える。
+
+仮に Crash 以外の選択が必要になった場合は、別記事として分散させることを期待する。
+別記事じゃなくここの記事にRule Type 自体もヘッダー分けして書くと、非常に長くなりそうなため。
+
+Target Type は a specific IIS webapplication pool 以外も選択したことが過去にもあるため、そこは分岐がある想定で目次のヘッダーの深さをターゲットタイプで ## になるように作成する。
+-->
+
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-00-17-36.png" alt="Rule Type と Target Type の選択画面図"></p>
+<!--
+仮にここで分岐が起こる場合は、目次を挿入するのも良いとと考える
+-->
+
+<h2 id="3-対象となる-DebugDiag-のターゲットタイプ-が-A-specific-IIS-web-application-pool-の場合"><a href="#3-対象となる-DebugDiag-のターゲットタイプ-が-A-specific-IIS-web-application-pool-の場合" class="headerlink" title="3. 対象となる DebugDiag のターゲットタイプ が A specific IIS web application pool の場合"></a>3. 対象となる DebugDiag のターゲットタイプ が A specific IIS web application pool の場合</h2><p>ダンプの取得タイミングにより更に取得方法が分岐します。以下 2 つのうちどちらかのタイミングで取得します。</p>
+<ul>
+<li><strong>First Chance</strong> : 例外が発生したタイミングで取得する設定で、例外処理をしていてアプリケーションがクラッシュしない場合でも取得する</li>
+<li><strong>Second Chance</strong> : 例外が発生し、例外処理がされずにアプリケーションがクラッシュ場合のみ取得する設定で、クラッシュの直前のタイミングで取得する</li>
+</ul>
+<p>弊社より &lt;ダンプの取得タイミング&gt; について設定項目が指定された場合はそちらに従ってください。<br>※ 例として、アクセス違反発生時にダンプを取得する場合は、 &lt;ダンプの取得タイミング&gt; は First Chance を選択してください。  </p>
+<h3 id="3-1-ダンプの取得タイミング-が-First-Chance-の場合"><a href="#3-1-ダンプの取得タイミング-が-First-Chance-の場合" class="headerlink" title="3.1. ダンプの取得タイミング が First Chance の場合"></a>3.1. ダンプの取得タイミング が First Chance の場合</h3><p>First Chance とは、例外発生したタイミングでダンプを取得する方法になります。<br>例えば try/catch による例外処理をしていて、アプリケーションがクラッシュしない場合においても、First Chance により、例外が発生した瞬間にダンプを取得することができます。</p>
+<ul>
+<li>[Advanced Configuration (Optional)] 画面にて [Advanced Settings] -  [Exceptions…] をクリックします。  </li>
+<li>次に、 [First Chance Exception Configuration] - [Add Exception…] をクリックします。  </li>
+<li>次に、 [Configure Exception] 画面にてダンプを生成する例外の条件を設定します。  </li>
+</ul>
+<p>設定条件には以下を入力してください。<br>(&lt;その他の設定&gt; について弊社から特に指示がない場合は無視してください。)</p>
+<ul>
+<li>[Exception Code (hex)] : &lt;First Chance で対象となる例外コード&gt;</li>
+<li>[Action Type] : &lt;First Chance で取得するダンプの領域&gt;</li>
+<li>[Action Limit] : &lt;First Chance で取得するダンプの回数&gt;</li>
+<li>[その他の設定項目] : &lt;First Chance のその他の設定&gt;</li>
+</ul>
+<p>※ 例として、今回ははアクセス違反発生時にダンプを取得する場合の設定条件を紹介します。<br>以下の画像のように設定をすることで、 Access Violation による例外発生によるダンプの取得を行います。</p>
+<ul>
+<li>[Exception Code (hex)] : C0000005 (Access Violation)</li>
+<li>[Action Type] : Full Userdump</li>
+<li>[Action Limit] : 2</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-18-47.png" alt="First Chance で Access Violation の設定画面図"></p>
+<ul>
+<li>[Configure Exception] 画面にて [OK] を選択し、  </li>
+<li>[First Chance Exception Configuration] 画面にて [Save &amp; Close] を選択します。</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-01-53-13.png" alt="First Chance で設定完了までの設定図"></p>
+<p>こちらで First Chance つまり例外発生時にダンプを取得する設定を完了しました。</p>
+<ul>
+<li>[Advanced Configuration (Optional)] 画面に戻りますので、[次へ] ボタンを押します。  </li>
+<li>[Select Dump Location And Rule Name (Optional)] では、ダンプの出力先やルールの名前を設定できます。  </li>
+<li>&lt;DebugDiag の有効化時期&gt; について弊社から指定がない場合は、 [Rule Completed] - [Activate the rule now] を選択し、 [完了] をクリックします。</li>
+</ul>
+<p>※ 例として、今回はアクセス違反発生時にダンプを取得する設定の場合は、画像の通り、[Activate the rule now] を選択し、[完了] をクリックします。</p>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-19-43.png" alt="DebugDiag の設定の有効化の設定図1"></p>
+<p>なお別のログ採取ツールのタイミングに応じて DebugDiag も有効化したい場合などは、 </p>
+<ul>
+<li>[Do not activate the rule at this time] を選択し、  </li>
+<li>別途 DebugDiag を有効化するタイミングで当該の作成したルールを選び [右クリック] から [Activate Rule] を実行してください。</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-25-05.png" alt="DebugDiag の設定の有効化の設定図2"></p>
+<h2 id="4-ダンプ生成後ファイルの取得"><a href="#4-ダンプ生成後ファイルの取得" class="headerlink" title="4. ダンプ生成後ファイルの取得"></a>4. ダンプ生成後ファイルの取得</h2><p>設定を完了後、現象の再現を待ちます。<br>事象が発生した場合、出力先に設定した箇所にダンプ ファイル (拡張子 .dmp) が出力されます。そちらをアップロードしてください。</p>
+<h2 id="5-DebugDiag-のアンインストール方法について"><a href="#5-DebugDiag-のアンインストール方法について" class="headerlink" title="5. DebugDiag のアンインストール方法について"></a>5. DebugDiag のアンインストール方法について</h2><p>DebugDiag 自体を削除する場合は、有効化したルールすべてを削除します。  </p>
+<ul>
+<li>コントロールパネルを開き、[プログラムのアンインストールまたは変更] を開きます。  </li>
+<li>DebugDiag のアプリケーションを選択し、 [アンインストール] を実行してください。</li>
+</ul>
+<p><img src="/jpwebapps/web-apps/debugdiag/debugdiag_2021-05-24-02-34-14.png" alt="DebugDiag のアンインストールの画面図"></p>
+<h2 id="6-DebugDiag-の検証方法について"><a href="#6-DebugDiag-の検証方法について" class="headerlink" title="6. DebugDiag の検証方法について"></a>6. DebugDiag の検証方法について</h2><h3 id="6-1-前提条件"><a href="#6-1-前提条件" class="headerlink" title="6.1. 前提条件"></a>6.1. 前提条件</h3><ul>
+<li>ASP.NET が実行できる環境をご用意ください。</li>
+</ul>
+<h3 id="6-2-例外を意図的に発生させるアプリケーションの配置"><a href="#6-2-例外を意図的に発生させるアプリケーションの配置" class="headerlink" title="6.2. 例外を意図的に発生させるアプリケーションの配置"></a>6.2. 例外を意図的に発生させるアプリケーションの配置</h3><ul>
+<li>以下のコードを .aspx という拡張子で保存して IIS 上の任意のサイトに配置します。</li>
+<li>コード中の &lt;検証用の例外コード&gt; には 例外コードを 10 進数で入力します。  </li>
+</ul>
+<p>例えば C0000005 の例外を発生させたい場合は、それを 10 進数で表した 3221225477 を入力します。  </p>
+<p>以下例として、アクセス違反の例外を意図的に発生させます。<br>具体的にはアクセス違反の例外コードである 0xC0000005 を 10 進数表記した 3221225477 を &lt;検証用の例外コード&gt; に指定してください。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ Import Namespace=<span class="string">&quot;System.Runtime.InteropServices&quot;</span> %&gt;</span><br><span class="line">&lt;%@ Page language=<span class="string">&quot;C#&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">   &lt;script language=<span class="string">&quot;cs&quot;</span> runat=<span class="string">&quot;server&quot;</span>&gt;</span><br><span class="line">[<span class="built_in">DllImport</span>(<span class="string">&quot;kernel32.dll&quot;</span>)]</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">void</span> <span class="built_in">RaiseException</span>(uint dwExceptionCode, uint dwExceptionFlags,  uint nNumberOfArguments, IntPtr lpArguments);</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">throwEx</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">RaiseException</span>(&lt;検証用の例外コード&gt;, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">new</span> <span class="built_in">IntPtr</span>(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Button1_Click</span><span class="params">(object sender, EventArgs e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    System.Threading.Thread t = <span class="keyword">new</span> System.Threading.<span class="built_in">Thread</span>(throwEx);</span><br><span class="line">        t.<span class="built_in">Start</span>();</span><br><span class="line">&#125;</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form id=<span class="string">&quot;form1&quot;</span> runat=<span class="string">&quot;server&quot;</span>&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;asp:Button ID=<span class="string">&quot;Button1&quot;</span> runat=<span class="string">&quot;server&quot;</span> Text=<span class="string">&quot;Button&quot;</span> onclick=<span class="string">&quot;Button1_Click&quot;</span> /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以下の項目を右に読み替えていただき、再度 <a href="#2-DebugDiag-%E3%81%AE%E5%8F%96%E5%BE%97%E8%A8%AD%E5%AE%9A">DebugDiag の取得手順</a> に従って、DebugDiag の設定を行います。</p>
+<ul>
+<li>&lt;対象となるアプリケーションプール&gt;: テスト用の上記のコードが配置されたウェブサイトのアプリケーションプール</li>
+<li>&lt;First Chance で対象となる例外コード&gt;: &lt;検証用の例外コード&gt;</li>
+</ul>
+<h3 id="6-3-確認方法"><a href="#6-3-確認方法" class="headerlink" title="6.3. 確認方法"></a>6.3. 確認方法</h3><ul>
+<li>設定を終了後、当該の検証用のアプリケーションにアクセスして、[Button] をクリックします。  </li>
+<li>ダンプの出力先として設定したフォルダに、メモリダンプが出力されているかどうかをご確認ください。</li>
+</ul>
+<!--
+## DebugDiag についての FAQ
+
+DebugDiag についてよくいただくご質問について以下におまとめしております。
+
+- [DebugDiag についての Q&A][DebugDiag についての Q&A]  
+
+以上の Q&A を確認したもののご不明点が解決しない場合は、  
+私共サポートまでお問い合わせいただけますと大変幸いです。
+
+ 
+DebugDiag FAQ のネタについて
+- DebugDiag 取得時にシステムに与える影響について
+- DebugDiag の解析方法？
+- DebugDiag の検証方法はこっちじゃなくていいのかな
+
+-->
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/DebugDiag/" rel="tag">DebugDiag</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li></ul>
+
+        
+        <a href="https://github.com/microsoft/jpwebapps/edit/main/articles/web-apps/debugdiag.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../isapi-wildcard/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          ASP.NET で 拡張子のない URL にてアクセスすると、追加したカスタム ISAPI 拡張ハンドラーが動作しない現象について
+        
+      </div>
+    </a>
+  
+  
+    <a href="../freb/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">失敗した要求トレース (FREB) の取得方法について</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../iis-log-auto-collection/">IIS の基本的な情報の自動採取について</a>
+          </li>
+        
+          <li>
+            <a href="../webapps-dotnet-profiler/">Azure Web Apps の .NET Profiler の取得時間を変更する方法について</a>
+          </li>
+        
+          <li>
+            <a href="../webapps-diagnostic-tools/">Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？</a>
+          </li>
+        
+          <li>
+            <a href="../../azure-web-pubsub/AzureWebPubSub-for-beginner/">Azure Web PubSub サービスの利用</a>
+          </li>
+        
+          <li>
+            <a href="../../azure-bot-service/bot-merry-christmas/">Bot Framework Composer を用いた Azure Bot 構築</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Portal/" rel="tag">Azure Portal</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Web-PubSub-Service/" rel="tag">Azure Web PubSub Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/DebugDiag/" rel="tag">DebugDiag</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FREB/" rel="tag">FREB</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FREBDump/" rel="tag">FREBDump</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IIS/" rel="tag">IIS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Virtual-Directory/" rel="tag">Virtual Directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WCF/" rel="tag">WCF</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" rel="tag">インターンシップ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" rel="tag">ハンドラーマッピング</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" rel="tag">料金プラン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%A8%AD%E5%AE%9A/" rel="tag">設定</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">10</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-App-Service">Azure App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-Portal">Azure Portal</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3">料金プラン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E8%A8%AD%E5%AE%9A">設定</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">18</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-Bot-Service">Azure Bot Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/DebugDiag">DebugDiag</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FREB">FREB</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FREBDump">FREBDump</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Virtual-Directory">Virtual Directory</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/WCF">WCF</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">10</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/01/">2022 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/12/">2021 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/05/">2021 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/04/">2021 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/09/">2020 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/05/">2020 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 13.33px;">ASP.NET</a> <a href="../../tags/ASP-NET-Core/" style="font-size: 10px;">ASP.NET Core</a> <a href="../../tags/Azure-App-Service/" style="font-size: 13.33px;">Azure App Service</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 16.67px;">Azure Bot Service</a> <a href="../../tags/Azure-Portal/" style="font-size: 10px;">Azure Portal</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/Azure-Web-PubSub-Service/" style="font-size: 10px;">Azure Web PubSub Service</a> <a href="../../tags/C/" style="font-size: 15px;">C#</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/DebugDiag/" style="font-size: 10px;">DebugDiag</a> <a href="../../tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="../../tags/FREB/" style="font-size: 10px;">FREB</a> <a href="../../tags/FREBDump/" style="font-size: 11.67px;">FREBDump</a> <a href="../../tags/IIS/" style="font-size: 11.67px;">IIS</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 20px;">Internet Information Services</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 10px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Virtual-Directory/" style="font-size: 10px;">Virtual Directory</a> <a href="../../tags/WCF/" style="font-size: 10px;">WCF</a> <a href="../../tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" style="font-size: 10px;">インターンシップ</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 11.67px;">チーム紹介</a> <a href="../../tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" style="font-size: 10px;">ハンドラーマッピング</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 18.33px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" style="font-size: 10px;">料金プラン</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a> <a href="../../tags/%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">設定</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="https://privacy.microsoft.com/ja-jp/privacystatement" target="_blank" rel=”noopener”>Privacy & Cookies</a> |  
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/copyright" target="_blank" rel=”noopener”>Terms of use</a> |
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/trademarks" target="_blank" rel=”noopener”>Trademarks</a> |
+      &copy; 2025 Web Developer Platform WebApps Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

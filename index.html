@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Japan Web Developer Platform WebApps Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="日本マイクロソフトの Azure Bot Service &#x2F; Internet Information Services (IIS) に関するサポート情報のブログです。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Japan Web Developer Platform WebApps Team Blog">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/index.html">
+<meta property="og:site_name" content="Japan Web Developer Platform WebApps Team Blog">
+<meta property="og:description" content="日本マイクロソフトの Azure Bot Service &#x2F; Internet Information Services (IIS) に関するサポート情報のブログです。">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:author" content="Web Developer Platform WebApps Japan">
+<meta property="article:tag" content="Azure Bot Service">
+<meta property="article:tag" content="Bot">
+<meta property="article:tag" content="Bot Service">
+<meta property="article:tag" content="Bot Framework">
+<meta property="article:tag" content="IIS">
+<meta property="article:tag" content="Internet Information Services">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="atom.xml" title="Japan Web Developer Platform WebApps Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="css/style.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/jpwebapps/">Home</a>
+        
+          <a class="main-nav-link" href="/jpwebapps/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="index.html" id="logo">Japan Web Developer Platform WebApps Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-web-apps/iis-log-auto-collection" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="web-apps/iis-log-auto-collection/" class="article-date">
+  <time datetime="2022-05-15T15:00:00.000Z" itemprop="datePublished">2022-05-16</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="web-apps/iis-log-auto-collection/">IIS の基本的な情報の自動採取について</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        IIS サポートチームの大嶋です。本稿では、IIS の事象発生後にまず初期調査のための情報採取の際に利用できる自動採取ツールをご紹介します。
+なお、本ツールは OSS となり、我々の技術サポートでサポートするツールではございません。もしツールでの採取に不明点・懸念点や上手く取得できない等ありましたら、まずは手動で以下の採取をご検討下さい。
+IIS の調査に必要な基本的なログ情報について
+
+採取方法について
+事象を再現します。
+
+上記再現後、 IIS 側のサーバーにて、以下より LogCatcher (.zip) をダウンロードします。
+https://github.com/crnegule/LogCatcher/releases/latest
+
+ダウンロード後、必ず解凍前に LogCatcherV3.3.zip を右クリックし、[プロパティ] を開きます。
+
+プロパティ [全般] タブ下部...
+        <p class="article-readmore">
+          <a href="web-apps/iis-log-auto-collection/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/web-apps/iis-log-auto-collection/" data-id="cmehxkhy7001kpo6c9txsaiii" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web-apps/webapps-dotnet-profiler" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="web-apps/webapps-dotnet-profiler/" class="article-date">
+  <time datetime="2022-01-06T15:00:00.000Z" itemprop="datePublished">2022-01-07</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="web-apps/webapps-dotnet-profiler/">Azure Web Apps の .NET Profiler の取得時間を変更する方法について</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        IIS / ASP.NET サポートチームの大嶋です。
+本稿では、先日投稿した Azure Web Apps の .NET の Profiler トレース (ETW) の取得時間を既定値の 60 秒から変更して取得する方法について、ご紹介します。
+.NET Profiler を取得したい再現リクエストの秒数が 60 秒より短かったり、逆に 60 秒より長いことが見込まれたりと、取得秒数を既定値から変更したい場面はあるかと思います。
+そのようなときは、具体的には、以下 Azure Portal 上の操作で .NET の Profiler トレース (ETW) を取得の目安時間を変更した上で採取が可能です。なお、意図的に事象が再現できる手順が確立出来ていることが前提です。
+
+事前準備
+App Service Plan が Standard 以上の必要があるため、該当の Azure App Se...
+        <p class="article-readmore">
+          <a href="web-apps/webapps-dotnet-profiler/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/web-apps/webapps-dotnet-profiler/" data-id="cmehxkhzi004vpo6cfwckh48j" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/IIS/" rel="tag">IIS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web-apps/webapps-diagnostic-tools" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="web-apps/webapps-diagnostic-tools/" class="article-date">
+  <time datetime="2021-12-22T15:00:00.000Z" itemprop="datePublished">2021-12-23</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="web-apps/webapps-diagnostic-tools/">Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        本記事は Azure Tech Advent Calendar 2021 23 日目 の記事です。
+
+Azure Web Apps でもオンプレ IIS の時に取っていた情報が同様に取れるのか…？-&gt; はい、実は色々取れるものもあります。例えば…という Blog です。
+IIS サポートチームの大嶋です。
+我々のチームでは普段オンプレミス製品である IIS や ASP.NET をサポートしてます。ですが、今回は Azure Tech の Advent Calendar ということで、せっかくなので IIS とも親和性がある Azure PaaS の App Service ファミリーの Azure Web Apps (Windows) に関して、取得可能な情報を一部ですがご紹介しようと思います。
+ちなみに、本稿では、具体的に有効な場面や情報の詳細等には踏み込みません。こういったものも...
+        <p class="article-readmore">
+          <a href="web-apps/webapps-diagnostic-tools/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/" data-id="cmehxkhy9001ppo6ca4kk5p85" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/IIS/" rel="tag">IIS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-azure-web-pubsub/AzureWebPubSub-for-beginner" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="azure-web-pubsub/AzureWebPubSub-for-beginner/" class="article-date">
+  <time datetime="2021-12-19T15:00:00.000Z" itemprop="datePublished">2021-12-20</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="azure-web-pubsub/AzureWebPubSub-for-beginner/">Azure Web PubSub サービスの利用</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        ＊本記事は Microsoft Azure Tech Advent Calendar 2021 の 20 日目の記事になります。
+皆さんこんにちは。Developer Support Internet チームの伊藤です。今回の記事では、2021 年 11 月に正式にリリースされた、Azure Web PubSub Service についてご紹介します。少しでもこれから初めて Azure Web PubSub Service に触るという方や、Azure Web PubSub Service の使用を検討してるという方々の参考になればと嬉しいです！
+Azure Web PubSub Service とはAzure Web PubSub Service とはパブリッシュ-サブスクライブ パターンを利用して、リアルタイムに双方向通信を実現するメッセージング サービスです。(以降、この記事では適宜...
+        <p class="article-readmore">
+          <a href="azure-web-pubsub/AzureWebPubSub-for-beginner/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/azure-web-pubsub/AzureWebPubSub-for-beginner/" data-id="cmehxkhxk000epo6c71uf1vi4" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Azure-Web-PubSub-Service/" rel="tag">Azure Web PubSub Service</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-azure-bot-service/bot-merry-christmas" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="azure-bot-service/bot-merry-christmas/" class="article-date">
+  <time datetime="2021-12-07T15:00:00.000Z" itemprop="datePublished">2021-12-08</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="azure-bot-service/bot-merry-christmas/">Bot Framework Composer を用いた Azure Bot 構築</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        ちょっと早いですが Merry Christmas！Azure Bot Service サポート チームの石沢です！
+皆様、Bot Framework Composer をご存じですか？なんとこれを利用すればノンコーディングでも Bot を構築することが可能です！Bot でサービス構築したいけどコーディングはちょっと…という方でも GUI を操作するだけで構築完了してしまう優れものです。今回は初めての Bot Framework Composer を利用される方向けに、Merry Christmas と話しかけると Merry Christmas と返してくれる、こちらから話しかけた内容をそのままオウム返ししてくる Bot を Azure 上に構築してみます。
+
+Bot Framework Composer を利用するにあたって、以下のソフトウェアのインストールする必要があります。本記事で...
+        <p class="article-readmore">
+          <a href="azure-bot-service/bot-merry-christmas/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/azure-bot-service/bot-merry-christmas/" data-id="cmehxkhxd0004po6c9bep4mh8" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-general/career2-intern-experience" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="general/career2-intern-experience/" class="article-date">
+  <time datetime="2021-11-24T15:00:00.000Z" itemprop="datePublished">2021-11-25</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="general/career2-intern-experience/">&lt;Career&gt;&lt;第二弾&gt; インターンから見た Microsoft と Developer Support Internet (DSI) チーム (2021)</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        ＊本記事はこれから日本マイクロソフトのインターンシップ、あるいは就職先として考える学生に向けて、実際に 2021 年のサマーインターンシップに参加してもらった学生に書いてもらいました。インターン生の率直な感想を皆さんにお伝えするために、普段の内容より少々くだけた表現となっておりますのでご了承ください。以下からが本文となります。
+こんにちは！CSS Developer Support Internet チームでサマーインターンシップに参加しております宮脇（Miyawaki）と申します。本記事では、私が Microsoft Japan で働いてみた所感と将来のインターン生、今後マイクロソフトを就職先に考える学生に向けた Tips をまとめようと思います。
+例えば、以下のような質問に、私見ではありますが回答できればと思います。
+
+  インターンシップには参加したいけど、不安……
+  Micros...
+        <p class="article-readmore">
+          <a href="general/career2-intern-experience/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/general/career2-intern-experience/" data-id="cmehxkhxo000jpo6c1uczh7fc" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" rel="tag">インターンシップ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-general/career1-dsi-technologies" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="general/career1-dsi-technologies/" class="article-date">
+  <time datetime="2021-11-01T15:00:00.000Z" itemprop="datePublished">2021-11-02</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="general/career1-dsi-technologies/">&lt;Career&gt;&lt;第一弾&gt; Developer Support Internet (DSI) ってどのような製品の技術サポートをしているの？</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        こんにちは。Developer Support Internet (DSI) サポート チームの大嶋です。 
+この度は少し前から 我々の DSI チームで採用活動が再開 したこともあり、ぜひ我々のチーム DSI ってどういうチームなのか？を知っていただきたいという思いから、チーム紹介の Blog を開始します！
+今回は第一弾ということで、シンプルに我々のチームがサポートしている技術製品を紹介し、テクニカルな面にフォーカスしお話しします。
+Developer Support チームということで、お客様の課題解決のために、技術的に幅広く難易度の高い様々な開発系のお問い合わせに触れられることが醍醐味の 1 つであり、それぞれカテゴリごとに技術的な面白さを少しばかりご紹介したいと思います。ちなみに、我々のチームは現在はフルリモートで働いており、既に完全リモートワークを開始して約 1 年半以上が経ち...
+        <p class="article-readmore">
+          <a href="general/career1-dsi-technologies/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/" data-id="cmehxkhxm000gpo6c453n2gd4" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web-apps/isapi-wildcard" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="web-apps/isapi-wildcard/" class="article-date">
+  <time datetime="2021-08-30T15:00:00.000Z" itemprop="datePublished">2021-08-31</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="web-apps/isapi-wildcard/">ASP.NET で 拡張子のない URL にてアクセスすると、追加したカスタム ISAPI 拡張ハンドラーが動作しない現象について</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        こんにちは。IIS サポート チームです！  
+Windows Server 2012 以降の OS バージョンの IIS (IIS 8.0 以降) にて、カスタムの ISAPI 拡張 (ハンドラー) をワイルドカード マッピングを利用して動作させたい場合に、ASP.NET の機能との関連で動作しない現象について、お知らせします。
+   ISAPI 拡張について
+現象 IIS 10.0 , ASP.NET の環境下で、 要求パス に “*” を指定した ISAPI 拡張をハンドラーに追加した場合、 拡張子のない URL でアクセスすると、追加した ISAPI 拡張ハンドラーが動作しない。
+ コマンド例
+1appcmd set config &quot;Default Web Site&quot; /section:handlers /+&quot;[name=&#x27;ISAPI_Ext...
+        <p class="article-readmore">
+          <a href="web-apps/isapi-wildcard/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/web-apps/isapi-wildcard/" data-id="cmehxkhy7001lpo6ch5qa3s44" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" rel="tag">ハンドラーマッピング</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web-apps/debugdiag" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="web-apps/debugdiag/" class="article-date">
+  <time datetime="2021-06-28T15:00:00.000Z" itemprop="datePublished">2021-06-29</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="web-apps/debugdiag/">Debug Diagnostics Tool (DebugDiag) の取得方法について</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        こんにちは。IIS サポート チームです！  
+弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供しております。今回は Debug Diagnostics Tool (以降 DebugDiag) によりメモリダンプを取得する手順についてご説明いたします。
+※ なお、Debug Diagnostic Tool ツール自体のサポートは私共技術サポートではご提供しておりません。そのため、なお、Debug Diagnostic Tool ツール自体のトラブルシューティングやツールの詳細なご紹介等はご支援できませんことをご了承ください。
+DebugDiag とはDebugDiag とはメモリダンプを取得・解析するための強力なツールです。DebugDiag は我々 IIS サポートチームのみならず、別のサポートチームにおいてでも様々なシナリオでダンプを取得し、...
+        <p class="article-readmore">
+          <a href="web-apps/debugdiag/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/web-apps/debugdiag/" data-id="cmehxkhy20018po6cgb9hbz32" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/DebugDiag/" rel="tag">DebugDiag</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web-apps/freb" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    <!-- post date -->
+    <div class="article-meta">
+      <a href="web-apps/freb/" class="article-date">
+  <time datetime="2021-05-26T15:00:00.000Z" itemprop="datePublished">2021-05-27</time>
+</a>
+      
+    </div>
+
+    
+    <!-- post title -->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="web-apps/freb/">失敗した要求トレース (FREB) の取得方法について</a>
+    </h1>
+  
+
+      </header>
+    
+
+    <!-- post caption -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        こんにちは。IIS サポート チームです！  
+弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供させていただきます。今回は 失敗した要求トレース 通称 FREB の取得手順についてご説明します。
+FREB とは FREB はウェブ リクエストにウェブサーバーがどのように応答したか、その処理過程を .xml 形式のログに出力するモジュールです。リクエストの応答に問題があった場合、FREB のログを確認することで問題の調査を行えます。  
+ログ出力の条件は柔軟に設定することができます。40X や 50X などの応答が起きた時、もしくはリクエストの処理時間が一定時間を超えた時など、状況に合わせた設定可能です。
+FREB の詳しい説明は Monitor Activity on a Web Server (IIS 7) をご確認ください。
+なお注意点として...
+        <p class="article-readmore">
+          <a href="web-apps/freb/">Read more</a>
+        </p>
+      
+    </div>
+
+    <footer class="article-footer">
+      <!--a data-url="https://microsoft.github.io/jpwebapps/web-apps/freb/" data-id="cmehxkhy3001apo6cg5klb7sl" class="article-share-link">共有</a-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/FREB/" rel="tag">FREB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="page-number" href="page/4/">4</a><a class="extend next" rel="next" href="page/2/">次へ &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="web-apps/iis-log-auto-collection/">IIS の基本的な情報の自動採取について</a>
+          </li>
+        
+          <li>
+            <a href="web-apps/webapps-dotnet-profiler/">Azure Web Apps の .NET Profiler の取得時間を変更する方法について</a>
+          </li>
+        
+          <li>
+            <a href="web-apps/webapps-diagnostic-tools/">Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？</a>
+          </li>
+        
+          <li>
+            <a href="azure-web-pubsub/AzureWebPubSub-for-beginner/">Azure Web PubSub サービスの利用</a>
+          </li>
+        
+          <li>
+            <a href="azure-bot-service/bot-merry-christmas/">Bot Framework Composer を用いた Azure Bot 構築</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Azure-Portal/" rel="tag">Azure Portal</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Azure-Web-PubSub-Service/" rel="tag">Azure Web PubSub Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/DebugDiag/" rel="tag">DebugDiag</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/FREB/" rel="tag">FREB</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/FREBDump/" rel="tag">FREBDump</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IIS/" rel="tag">IIS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Virtual-Directory/" rel="tag">Virtual Directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/WCF/" rel="tag">WCF</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" rel="tag">インターンシップ</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" rel="tag">ハンドラーマッピング</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" rel="tag">料金プラン</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/%E8%A8%AD%E5%AE%9A/" rel="tag">設定</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">10</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/Azure-App-Service">Azure App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/Azure-Portal">Azure Portal</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3">料金プラン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Azure-Bot-Service/%E8%A8%AD%E5%AE%9A">設定</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">18</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/Azure-Bot-Service">Azure Bot Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/DebugDiag">DebugDiag</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/FREB">FREB</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/FREBDump">FREBDump</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/Virtual-Directory">Virtual Directory</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/WCF">WCF</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">10</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="tags/ASP-NET/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2022/01/">2022 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/12/">2021 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/05/">2021 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2021/04/">2021 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/09/">2020 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/05/">2020 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="tags/ASP-NET/" style="font-size: 13.33px;">ASP.NET</a> <a href="tags/ASP-NET-Core/" style="font-size: 10px;">ASP.NET Core</a> <a href="tags/Azure-App-Service/" style="font-size: 13.33px;">Azure App Service</a> <a href="tags/Azure-Bot-Service/" style="font-size: 16.67px;">Azure Bot Service</a> <a href="tags/Azure-Portal/" style="font-size: 10px;">Azure Portal</a> <a href="tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="tags/Azure-Web-PubSub-Service/" style="font-size: 10px;">Azure Web PubSub Service</a> <a href="tags/C/" style="font-size: 15px;">C#</a> <a href="tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="tags/DebugDiag/" style="font-size: 10px;">DebugDiag</a> <a href="tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="tags/FREB/" style="font-size: 10px;">FREB</a> <a href="tags/FREBDump/" style="font-size: 11.67px;">FREBDump</a> <a href="tags/IIS/" style="font-size: 11.67px;">IIS</a> <a href="tags/IP/" style="font-size: 10px;">IP</a> <a href="tags/Internet-Information-Services/" style="font-size: 20px;">Internet Information Services</a> <a href="tags/Microsoft-Edge/" style="font-size: 10px;">Microsoft Edge</a> <a href="tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="tags/Virtual-Directory/" style="font-size: 10px;">Virtual Directory</a> <a href="tags/WCF/" style="font-size: 10px;">WCF</a> <a href="tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" style="font-size: 10px;">インターンシップ</a> <a href="tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 11.67px;">チーム紹介</a> <a href="tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" style="font-size: 10px;">ハンドラーマッピング</a> <a href="tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 18.33px;">ログ採取</a> <a href="tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" style="font-size: 10px;">料金プラン</a> <a href="tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a> <a href="tags/%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">設定</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="https://privacy.microsoft.com/ja-jp/privacystatement" target="_blank" rel=”noopener”>Privacy & Cookies</a> |  
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/copyright" target="_blank" rel=”noopener”>Terms of use</a> |
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/trademarks" target="_blank" rel=”noopener”>Trademarks</a> |
+      &copy; 2025 Web Developer Platform WebApps Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

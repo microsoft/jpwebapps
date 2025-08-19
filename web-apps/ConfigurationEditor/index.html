@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>構成エディターの使用方法について | Japan Web Developer Platform WebApps Team Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="こんにちは。 IIS サポート チームです！ [構成エディター] を使用することで、IIS マネージャー上の設定を変更するコマンドレット（PowerShell）やコマンドを生成することが出来ます。  この [構成エディター] は、弊社の公開情報でも設定手順が紹介されておりますが、実情として、日本語で丁寧に書かれた情報はございません。 　Editing Collections with Config">
+<meta property="og:type" content="article">
+<meta property="og:title" content="構成エディターの使用方法について">
+<meta property="og:url" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/index.html">
+<meta property="og:site_name" content="Japan Web Developer Platform WebApps Team Blog">
+<meta property="og:description" content="こんにちは。 IIS サポート チームです！ [構成エディター] を使用することで、IIS マネージャー上の設定を変更するコマンドレット（PowerShell）やコマンドを生成することが出来ます。  この [構成エディター] は、弊社の公開情報でも設定手順が紹介されておりますが、実情として、日本語で丁寧に書かれた情報はございません。 　Editing Collections with Config">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic1.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic2.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic3.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic4.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic5.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic6.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic7.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic9.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic10.png">
+<meta property="og:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic11.png">
+<meta property="article:published_time" content="2020-04-09T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-19T02:33:38.378Z">
+<meta property="article:author" content="Web Developer Platform WebApps Japan">
+<meta property="article:tag" content="Internet Information Services">
+<meta property="article:tag" content="Configuration Editor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/pic1.png">
+  
+    <link rel="alternate" href="../../atom.xml" title="Japan Web Developer Platform WebApps Team Blog" type="application/atom+xml">
+  
+
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="site-header-logo"></div>
+  <div id="site-header-blog-wrapper"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <div id="ms-logo"></div>
+        
+          <a class="main-nav-link" href="/jpwebapps/">Home</a>
+        
+          <a class="main-nav-link" href="/jpwebapps/archives">Archives</a>
+        
+        <a class="main-nav-link" target="_blank" rel="noopener" href="https://cssjpn.github.io/">サポート情報</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSSフィード"></a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.bing.com/search" method="get" accept-charset="UTF-8" name="bing-search" onsubmit="var f=this;if(f['q'].value){var searchUrl =  'https://www.bing.com/search?q=' +  encodeURIComponent(f['q'].value + ' site:' + f['sitesearch'].value) ;window.open(searchUrl, 'blank') };return false;" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" id="nav-search-btn" class="search-form-submit"></button><input type="hidden" name="sitesearch" value="https://microsoft.github.io/jpwebapps"></form>
+      </div>
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Japan Web Developer Platform WebApps Team Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="../../index.html" id="subtitle">日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-web-apps/ConfigurationEditor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header-single">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      構成エディターの使用方法について
+    </h1>
+  
+
+      </header>
+      <div class="article-share">
+        Published: 
+        <a href="" class="article-date-single">
+  <time datetime="2020-04-09T15:00:00.000Z" itemprop="datePublished">2020-04-10</time>
+</a>
+        
+        
+        
+        <a href="https://github.com/microsoft/jpwebapps/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+998c9082-78a8-5c63-ade3-dc1a9d8b5f44%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E6%A7%8B%E6%88%90%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF%E3%83%BC%E3%81%AE%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fmicrosoft.github.io%2Fjpwebapps%2Fweb-apps%2FConfigurationEditor%2F%29%0A*+Content+Source%3A+%5Barticles%2Fweb-apps%2FConfigurationEditor.md%5D%28https%3A%2F%2Fgithub.com%2Fmicrosoft%2Fjpwebapps%2Fblob%2Fmain%2Farticles%2Fweb-apps%2FConfigurationEditor.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
+        
+        <a data-url="https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/" data-id="cmehxkhxq000npo6ch6pldrp5" class="article-share-link">共有</a>
+      </div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>こんにちは。<br> <br>IIS サポート チームです！</p>
+<p>[構成エディター] を使用することで、IIS マネージャー上の設定を変更する<br>コマンドレット（PowerShell）やコマンドを生成することが出来ます。</p>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic1.png" alt="reference"></p>
+<p>この [構成エディター] は、弊社の公開情報でも設定手順が紹介されておりますが、<br>実情として、日本語で丁寧に書かれた情報はございません。</p>
+<p>　Editing Collections with Configuration Editor<br>　<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/iis/manage/managing-your-configuration-settings/editing-collections-with-configuration-editor">https://docs.microsoft.com/en-us/iis/manage/managing-your-configuration-settings/editing-collections-with-configuration-editor</a></p>
+<p>　Configuration Editor<br>　<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831362(v=ws.11)">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831362(v=ws.11)</a></p>
+<p>そこで、可能な限り、丁寧に [構成エディター] を使用してコマンドレットや<br>コマンドを生成する方法を以下にてご案内いたします。<br>なお、[構成エディター] 上にある全ての UI の説明は割愛させていただき、<br>以下では最小限の手順となります。</p>
+<h2 id="1-前提と周辺情報"><a href="#1-前提と周辺情報" class="headerlink" title=" 1. 前提と周辺情報 "></a><u> 1. 前提と周辺情報 </U></h2><p>まず、IIS マネージャー上で、以下の設定を変更するコマンドレットや<br>コマンドを生成したいという要望があると仮定します。</p>
+<p>“Default Web Site”<br>　- [ログ記録]<br>　　　- 右ペインの [有効にする], または [無効にする]</p>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic2.png" alt="reference"><br><img src="/jpwebapps/web-apps/ConfigurationEditor/pic3.png" alt="reference"></p>
+<p>その場合、まず上記の設定を [構成エディター] 上で探すことが必要となります。<br>[構成エディター] 上では、IIS マネージャー上の設定は “セクション” と<br>呼ばれる箇所においてツリー状で存在しています。</p>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic4.png" alt="reference"></p>
+<p>※ “セクション” は以下にある applicationHots.config ファイル内の要素に該当しています</p>
+<p>　　%SystemRoot%\system32\inetsrv\config</p>
+<p>　　故に、設定を変更したい項目を変更して、applicationHost.config 内のどの要素が<br>　　変更されたのかを確認（比較）することでも、当該設定が “セクション” 内の<br>　　いずれにあるかを探すことが出来ます</p>
+<p>“セクション” 内のどの箇所に当該設定があるかを把握するためには、<br>以下のサイトにアクセスして検索することが可能です。</p>
+<p>　Configuration Reference <configuration><br>　<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/iis/configuration/">https://docs.microsoft.com/en-us/iis/configuration/</a></p>
+<p>上記サイト左側にある configuration, administrators 等という項目が、<br>“セクション” に該当しています。</p>
+<p>さて、この中から該当の設定を探すことになりますが、その場合に最も簡単な<br>方法といたしましては、[Filter by title] に関連するキーワードを入力する方法です。</p>
+<p>それでは以下に、上記サイトにアクセスした後、コマンドレット、またはコマンドを<br>作成するまでの手順を記載いたします。</p>
+<h2 id="2-手順"><a href="#2-手順" class="headerlink" title=" 2. 手順 "></a><u> 2. 手順 </U></h2><ol>
+<li>英語での検索になりますが、[ログ記録] に関連するキーワードとして “log” で検索します</li>
+</ol>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic5.png" alt="reference"></p>
+<p>　　複数の候補が選択されている場合には、それぞれをクリックしていただくことで、<br>　　設定に関する公開情報にアクセスすることが出来ます<br>　　今回の設定に該当する公開情報は以下の URL となります</p>
+<p>　　 Log Files for a Web Site <logFile><br>　　 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/logfile/">https://docs.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/logfile/</a><br>　<br>　　 ※URL 内に、[ログ記録] を [有効にする], または [無効する] に指定できる記載を確認できます<br>　　 ※URL から、当該設定は以下に存在することが分かります</p>
+<p>　　(1)system.applicationhost – (2)sites – (3)site – (4)logfile</p>
+<p>　　 この場所が、上述した “セクション” に該当するとお考えください</p>
+<ol start="2">
+<li>IIS マネージャーを起動後、左ペインから Web サーバーを選択して、<br>[構成エディター] を開き、セクションから system.applicationHost – sites を選択します</li>
+</ol>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic6.png" alt="reference"></p>
+<ol start="3">
+<li>[コレクション], [Count=1] と表示されている右端の […] をクリックして、<br>「コレクション エディター」を起動します</li>
+</ol>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic7.png" alt="reference"></p>
+<ol start="4">
+<li>[項目:] 欄にて、“name” が “Default Web Site” である行（これが (3)site）を選択して、<br>[プロパティ: ] 欄にて、”logFile”（これが (4)logfile）を展開します</li>
+</ol>
+<p>![<a href="/jpwebapps/web-apps/ConfigurationEditor/pic8.png">reference</a></p>
+<ol start="5">
+<li>“enabled” の値（既定では “True”）をクリックして指定したい値に変更します</li>
+</ol>
+<p>　　 True: [有効にする]<br>　　 False: [無効にする]</p>
+<ol start="6">
+<li>「コレクション エディター」を閉じることで、右ペインの [スクリプトの生成] が<br>　  活性化されますので [スクリプトの生成] をクリックします</li>
+</ol>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic9.png" alt="reference"></p>
+<ol start="7">
+<li><p>「スクリプト ダイアログ」から、生成したいコマンドのタブを選択します</p>
+<p>　　 コマンドレット: ”PowerShell” タブ<br>　　 コマンド: ”コマンド ライン（AppCmd）” タブ</p>
+</li>
+</ol>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic10.png" alt="reference"></p>
+<ol start="8">
+<li>例えばコマンド ラインの場合には、以下の様に AppCmd が出力されます</li>
+</ol>
+<blockquote>
+<p>　appcmd.exe set config  -section:system.applicationHost/sites /“[name=’Default Web Site’].logFile.enabled:”False””  /commit:apphost<br>　appcmd.exe set config  -section:system.applicationHost/sites /“[name=’Default Web Site’].logFile.enabled:”True””  /commit:apphost<br>　　※ AppCmd はカレント ディレクトリを C:\Windows\System32\inetsrv に移動して実行してください</p>
+</blockquote>
+<ol start="9">
+<li>コマンドレット、コマンドのいずれの場合でも、管理者権限にて起動した PowerShell や<br>　  コマンド プロンプト上で実行して、以下の設定が変更されるかを確認します</li>
+</ol>
+<p>　　 “Default Web Site”<br>　　　 - [ログ記録]<br>　　　　　 - 右ペインの [有効にする], または [無効にする]</p>
+<p>　なお、上記の appcmd コマンドを実行した後、applicationHost.config ファイル内では<br>　以下の要素が書き換わっていることを確認することが出来ます</p>
+<h5 id="AppCmd-実行後の-applicationHost-config-内でのイメージ（上-有効にする-下-無効にする-）"><a href="#AppCmd-実行後の-applicationHost-config-内でのイメージ（上-有効にする-下-無効にする-）" class="headerlink" title="AppCmd 実行後の applicationHost.config 内でのイメージ（上: [有効にする], 下: [無効にする]）"></a>AppCmd 実行後の applicationHost.config 内でのイメージ（上: [有効にする], 下: [無効にする]）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;logFile logTargetW3C=&quot;File&quot; directory=&quot;%SystemDrive%\inetpub\logs\LogFiles&quot; enabled=&quot;true&quot; /&gt;</span><br><span class="line">&lt;logFile logTargetW3C=&quot;File&quot; directory=&quot;%SystemDrive%\inetpub\logs\LogFiles&quot; enabled=&quot;false&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>[適用] をクリックすると変更した値が反映されてしまうため、コマンドの<br>　   生成と取得のみを行いたい場合には、[キャンセル] をクリックする、または<br>　  IIS マネージャーにおいて他の画面に遷移した際に、以下のダイアログが<br>　  出力されますので、[いいえ] をクリックすることで設定の反映を防げます</li>
+</ol>
+<p><img src="/jpwebapps/web-apps/ConfigurationEditor/pic11.png" alt="reference"></p>
+<p>今回は以上です。 それでは、また次回！</p>
+
+      
+      
+        <div class="article-disclaimer">
+        
+          <p>なお、本ブログは弊社の公式見解ではなく、予告なく変更される場合があります。<br>もし公式な見解が必要な場合は、弊社ドキュメント (https://docs.microsoft.com/ や https://support.microsoft.com) をご参照いただく、もしくは私共サポートまでお問い合わせください。</p>
+        
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li></ul>
+
+        
+        <a href="https://github.com/microsoft/jpwebapps/edit/main/articles/web-apps/ConfigurationEditor.md" class="article-github-edit-link" target="_blank" rel="noopener noreferrer">GitHub で編集</a>
+        
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../azure-bot-service/bot-log-collection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Azure Bot Service の調査に必要な基本的な情報について
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../azure-bot-service/bot-cs-performance/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Web App Bot (C#) の応答遅延のログについて</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../iis-log-auto-collection/">IIS の基本的な情報の自動採取について</a>
+          </li>
+        
+          <li>
+            <a href="../webapps-dotnet-profiler/">Azure Web Apps の .NET Profiler の取得時間を変更する方法について</a>
+          </li>
+        
+          <li>
+            <a href="../webapps-diagnostic-tools/">Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？</a>
+          </li>
+        
+          <li>
+            <a href="../../azure-web-pubsub/AzureWebPubSub-for-beginner/">Azure Web PubSub サービスの利用</a>
+          </li>
+        
+          <li>
+            <a href="../../azure-bot-service/bot-merry-christmas/">Bot Framework Composer を用いた Azure Bot 構築</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <!-- <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-App-Service/" rel="tag">Azure App Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/" rel="tag">Azure Bot Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Portal/" rel="tag">Azure Portal</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-SignalR-Service/" rel="tag">Azure SignalR Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Web-PubSub-Service/" rel="tag">Azure Web PubSub Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/C/" rel="tag">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Configuration-Editor/" rel="tag">Configuration Editor</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Cookie/" rel="tag">Cookie</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/DebugDiag/" rel="tag">DebugDiag</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FREB/" rel="tag">FREB</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/FREBDump/" rel="tag">FREBDump</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IIS/" rel="tag">IIS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IP/" rel="tag">IP</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/" rel="tag">Internet Information Services</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Microsoft-Edge/" rel="tag">Microsoft Edge</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/QnA-Maker/" rel="tag">QnA Maker</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Rapid-Fail-Protection/" rel="tag">Rapid Fail Protection</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SameSite/" rel="tag">SameSite</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Virtual-Directory/" rel="tag">Virtual Directory</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/WCF/" rel="tag">WCF</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/gRPC/" rel="tag">gRPC</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" rel="tag">アクセス制限</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" rel="tag">インターンシップ</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" rel="tag">チーム紹介</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" rel="tag">ハンドラーマッピング</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" rel="tag">パフォーマンス</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" rel="tag">ログ採取</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" rel="tag">作成方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" rel="tag">料金プラン</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E7%9B%A3%E8%A6%96/" rel="tag">監視</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/%E8%A8%AD%E5%AE%9A/" rel="tag">設定</a></li></ul>  -->
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Azure-Bot-Service/">Azure Bot Service</a><span class="tag-list-count">10</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-App-Service">Azure App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Azure-Portal">Azure Portal</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/C">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/IP">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/Monitoring">Monitoring</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/QnA-Maker">QnA Maker</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90">アクセス制限</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9">パフォーマンス</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95">作成方法</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3">料金プラン</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E7%9B%A3%E8%A6%96">監視</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Azure-Bot-Service/%E8%A8%AD%E5%AE%9A">設定</a><span class="tag-list-count">1</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Internet-Information-Services/">Internet Information Services</a><span class="tag-list-count">18</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/ASP-NET">ASP.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-Bot-Service">Azure Bot Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Configuration-Editor">Configuration Editor</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/DebugDiag">DebugDiag</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FAQ">FAQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FREB">FREB</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/FREBDump">FREBDump</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Microsoft-Edge">Microsoft Edge</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Rapid-Fail-Protection">Rapid Fail Protection</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/Virtual-Directory">Virtual Directory</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/WCF">WCF</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B">チーム紹介</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/Internet-Information-Services/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96">ログ採取</a><span class="tag-list-count">10</span></li></ul></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ASP-NET/">ASP.NET</a><span class="tag-list-count">3</span><ul><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Azure-SignalR-Service">Azure SignalR Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Cookie">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/Internet-Information-Services">Internet Information Services</a><span class="tag-list-count">2</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/SameSite">SameSite</a><span class="tag-list-count">1</span></li><li class="tag-list-item tag-list-item-child-tag"><a class="tag-list-link tag-list-link-child" href="../../tags/ASP-NET/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">ハンドラーマッピング</a><span class="tag-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/05/">2022 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2022/01/">2022 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/12/">2021 / 12</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/11/">2021 / 11</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/08/">2021 / 08</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/06/">2021 / 06</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/05/">2021 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2021/04/">2021 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/09/">2020 / 09</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/05/">2020 / 05</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">2020 / 04</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/03/">2020 / 03</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">2020 / 02</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">2020 / 01</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">2019 / 12</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ASP-NET/" style="font-size: 13.33px;">ASP.NET</a> <a href="../../tags/ASP-NET-Core/" style="font-size: 10px;">ASP.NET Core</a> <a href="../../tags/Azure-App-Service/" style="font-size: 13.33px;">Azure App Service</a> <a href="../../tags/Azure-Bot-Service/" style="font-size: 16.67px;">Azure Bot Service</a> <a href="../../tags/Azure-Portal/" style="font-size: 10px;">Azure Portal</a> <a href="../../tags/Azure-SignalR-Service/" style="font-size: 10px;">Azure SignalR Service</a> <a href="../../tags/Azure-Web-PubSub-Service/" style="font-size: 10px;">Azure Web PubSub Service</a> <a href="../../tags/C/" style="font-size: 15px;">C#</a> <a href="../../tags/Configuration-Editor/" style="font-size: 10px;">Configuration Editor</a> <a href="../../tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="../../tags/DebugDiag/" style="font-size: 10px;">DebugDiag</a> <a href="../../tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="../../tags/FREB/" style="font-size: 10px;">FREB</a> <a href="../../tags/FREBDump/" style="font-size: 11.67px;">FREBDump</a> <a href="../../tags/IIS/" style="font-size: 11.67px;">IIS</a> <a href="../../tags/IP/" style="font-size: 10px;">IP</a> <a href="../../tags/Internet-Information-Services/" style="font-size: 20px;">Internet Information Services</a> <a href="../../tags/Microsoft-Edge/" style="font-size: 10px;">Microsoft Edge</a> <a href="../../tags/Monitoring/" style="font-size: 10px;">Monitoring</a> <a href="../../tags/QnA-Maker/" style="font-size: 10px;">QnA Maker</a> <a href="../../tags/Rapid-Fail-Protection/" style="font-size: 10px;">Rapid Fail Protection</a> <a href="../../tags/SameSite/" style="font-size: 10px;">SameSite</a> <a href="../../tags/Virtual-Directory/" style="font-size: 10px;">Virtual Directory</a> <a href="../../tags/WCF/" style="font-size: 10px;">WCF</a> <a href="../../tags/gRPC/" style="font-size: 10px;">gRPC</a> <a href="../../tags/%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90/" style="font-size: 10px;">アクセス制限</a> <a href="../../tags/%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97/" style="font-size: 10px;">インターンシップ</a> <a href="../../tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/" style="font-size: 11.67px;">チーム紹介</a> <a href="../../tags/%E3%83%8F%E3%83%B3%E3%83%89%E3%83%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0/" style="font-size: 10px;">ハンドラーマッピング</a> <a href="../../tags/%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9/" style="font-size: 10px;">パフォーマンス</a> <a href="../../tags/%E3%83%AD%E3%82%B0%E6%8E%A1%E5%8F%96/" style="font-size: 18.33px;">ログ採取</a> <a href="../../tags/%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95/" style="font-size: 10px;">作成方法</a> <a href="../../tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/" style="font-size: 10px;">料金プラン</a> <a href="../../tags/%E7%9B%A3%E8%A6%96/" style="font-size: 10px;">監視</a> <a href="../../tags/%E8%A8%AD%E5%AE%9A/" style="font-size: 10px;">設定</a>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="https://privacy.microsoft.com/ja-jp/privacystatement" target="_blank" rel=”noopener”>Privacy & Cookies</a> |  
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/copyright" target="_blank" rel=”noopener”>Terms of use</a> |
+      <a href="https://www.microsoft.com/ja-jp/legal/intellectualproperty/trademarks" target="_blank" rel=”noopener”>Trademarks</a> |
+      &copy; 2025 Web Developer Platform WebApps Japan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
