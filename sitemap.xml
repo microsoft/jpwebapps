@@ -163,14 +163,14 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/ip-limitation/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/</loc>
     
     <lastmod>2025-10-20</lastmod>
     
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/ip-limitation/</loc>
     
     <lastmod>2025-10-20</lastmod>
     
@@ -305,14 +305,14 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/tags/Azure-Portal/</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/tags/Azure-Portal/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/tags/%E6%96%99%E9%87%91%E3%83%97%E3%83%A9%E3%83%B3/</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -347,6 +347,13 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/tags/Azure-Web-PubSub-Service/</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/tags/%E3%83%81%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B/</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>daily</changefreq>
@@ -362,13 +369,6 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/tags/Internet-Information-Services/</loc>
-    <lastmod>2025-10-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/tags/Azure-Web-PubSub-Service/</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -417,14 +417,14 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/tags/Virtual-Directory/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/tags/Rapid-Fail-Protection/</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/tags/Rapid-Fail-Protection/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/tags/Virtual-Directory/</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
