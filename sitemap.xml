@@ -65,13 +65,6 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/VirtualDirectory/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/aspdotnet-samesitecookie/</loc>
     
     <lastmod>2025-10-23</lastmod>
@@ -86,28 +79,14 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/VirtualDirectory/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/Rapid-Fail-Protection/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection3/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection4/</loc>
     
     <lastmod>2025-10-23</lastmod>
     
@@ -129,6 +108,27 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection3/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection4/</loc>
     
     <lastmod>2025-10-23</lastmod>
     
