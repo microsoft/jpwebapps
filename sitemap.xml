@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/debugdiag/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/VirtualDirectory/</loc>
     
     <lastmod>2025-10-23</lastmod>
     
@@ -79,6 +79,13 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/debugdiag/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/Rapid-Fail-Protection/</loc>
     
     <lastmod>2025-10-23</lastmod>
@@ -86,7 +93,7 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/VirtualDirectory/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
     
     <lastmod>2025-10-23</lastmod>
     
@@ -128,13 +135,6 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/GrpcChatOnAspNetCore/</loc>
     
     <lastmod>2025-10-23</lastmod>
@@ -156,13 +156,6 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://microsoft.github.io/jpwebapps/general/welcome/</loc>
     
     <lastmod>2025-10-23</lastmod>
@@ -170,14 +163,7 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/bot-portal-log-collection/</loc>
-    
-    <lastmod>2025-10-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/how-to-create-faq-bot/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/</loc>
     
     <lastmod>2025-10-23</lastmod>
     
@@ -192,6 +178,20 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/azure-web-pubsub/AzureWebPubSub-for-beginner/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/bot-portal-log-collection/</loc>
+    
+    <lastmod>2025-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/how-to-create-faq-bot/</loc>
     
     <lastmod>2025-10-23</lastmod>
     
