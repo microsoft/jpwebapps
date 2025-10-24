@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/googlea7d1110110aa3e1b.html</loc>
-    
-    <lastmod>2025-10-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/webapps-dotnet-profiler/</loc>
     
     <lastmod>2025-10-24</lastmod>
@@ -100,6 +93,13 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection3/</loc>
     
     <lastmod>2025-10-24</lastmod>
@@ -115,13 +115,6 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection5/</loc>
-    
-    <lastmod>2025-10-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
@@ -149,6 +142,13 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/</loc>
     
     <lastmod>2025-10-24</lastmod>
@@ -170,7 +170,7 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/ip-limitation/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
@@ -192,13 +192,6 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/how-to-create-faq-bot/</loc>
-    
-    <lastmod>2025-10-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/ip-limitation/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
@@ -233,14 +226,14 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/bot-alwayson/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/bot-cs-performance/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/bot-cs-performance/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/azure-bot-service/bot-alwayson/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
