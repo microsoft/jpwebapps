@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/googlea7d1110110aa3e1b.html</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/webapps-dotnet-profiler/</loc>
     
     <lastmod>2025-10-24</lastmod>
@@ -79,13 +86,6 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/Rapid-Fail-Protection/</loc>
-    
-    <lastmod>2025-10-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/VirtualDirectory/</loc>
     
     <lastmod>2025-10-24</lastmod>
@@ -93,14 +93,7 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/</loc>
-    
-    <lastmod>2025-10-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/Rapid-Fail-Protection/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
@@ -128,7 +121,21 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection2/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/MigrationAzureSignalR/</loc>
+    
+    <lastmod>2025-10-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/</loc>
     
     <lastmod>2025-10-24</lastmod>
     
