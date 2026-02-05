@@ -16,14 +16,14 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/isapi-wildcard/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/wcf-indexoutofrangeexception/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/wcf-indexoutofrangeexception/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/isapi-wildcard/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
@@ -65,14 +65,14 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/debugdiag/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/aspdotnet-samesitecookie/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/aspdotnet-samesitecookie/</loc>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/debugdiag/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
@@ -87,27 +87,6 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/Rapid-Fail-Protection/</loc>
-    
-    <lastmod>2026-02-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection5/</loc>
-    
-    <lastmod>2026-02-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/MigrationAzureSignalR/</loc>
-    
-    <lastmod>2026-02-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
@@ -135,7 +114,35 @@
   </url>
   
   <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection5/</loc>
+    
+    <lastmod>2026-02-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/MigrationAzureSignalR/</loc>
+    
+    <lastmod>2026-02-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/web-apps/LogCollection1/</loc>
+    
+    <lastmod>2026-02-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/GrpcChatOnAspNetCore/</loc>
+    
+    <lastmod>2026-02-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
@@ -157,13 +164,6 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/web-apps/ConfigurationEditor/</loc>
-    
-    <lastmod>2026-02-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://microsoft.github.io/jpwebapps/general/career1-dsi-technologies/</loc>
     
     <lastmod>2026-02-05</lastmod>
     
@@ -403,13 +403,6 @@
   </url>
   
   <url>
-    <loc>https://microsoft.github.io/jpwebapps/tags/Rapid-Fail-Protection/</loc>
-    <lastmod>2026-02-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://microsoft.github.io/jpwebapps/tags/ASP-NET/</loc>
     <lastmod>2026-02-05</lastmod>
     <changefreq>daily</changefreq>
@@ -418,6 +411,13 @@
   
   <url>
     <loc>https://microsoft.github.io/jpwebapps/tags/Azure-SignalR-Service/</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://microsoft.github.io/jpwebapps/tags/Rapid-Fail-Protection/</loc>
     <lastmod>2026-02-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
