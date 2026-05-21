@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Web Developer Platform WebApps Japan</rights>
   <subtitle>日本マイクロソフトの Azure Bot Service / Internet Information Services (IIS) に関するサポート情報のブログです。</subtitle>
   <title>Japan Web Developer Platform WebApps Team Blog</title>
-  <updated>2026-04-03T06:49:22.124Z</updated>
+  <updated>2026-05-21T02:38:58.486Z</updated>
   <entry>
     <author>
       <name>Web Developer Platform WebApps Japan</name>
@@ -27,7 +27,7 @@
 <p>2025 年 4 月 8 日 に公開された KB5055523 を適用することで自動的に作成される %systemdrive%\inetpub フォルダーについて注意喚起をさせていただきます。<br><stron]]>
     </summary>
     <title>自動的に作成される %systemdrive%\inetpub フォルダーについて</title>
-    <updated>2026-04-03T06:49:22.124Z</updated>
+    <updated>2026-05-21T02:38:58.486Z</updated>
   </entry>
   <entry>
     <author>
@@ -46,7 +46,7 @@
 <p>なお、本ツールは OSS となり、我々の技術サポートでサポートするツールではございません。<br>もしツールで]]>
     </summary>
     <title>IIS の基本的な情報の自動採取について</title>
-    <updated>2026-04-03T06:49:22.141Z</updated>
+    <updated>2026-05-21T02:38:58.502Z</updated>
   </entry>
   <entry>
     <author>
@@ -66,7 +66,7 @@
 <p>本稿では、先日投稿した <a href="https://microsoft.github.io/jpwebapps/web-apps/webapps-diagnostic-tools/#3-A]]>
     </summary>
     <title>Azure Web Apps の .NET Profiler の取得時間を変更する方法について</title>
-    <updated>2026-04-03T06:49:22.143Z</updated>
+    <updated>2026-05-21T02:38:58.505Z</updated>
   </entry>
   <entry>
     <author>
@@ -87,7 +87,7 @@
 <p>A]]>
     </summary>
     <title>Azure Web Apps でオンプレ IIS と同じような情報は取れるのか？</title>
-    <updated>2026-04-03T06:49:22.142Z</updated>
+    <updated>2026-05-21T02:38:58.503Z</updated>
   </entry>
   <entry>
     <author>
@@ -104,7 +104,7 @@
       <![CDATA[<p>＊本記事は <a href="https://qiita.com/advent-calendar/2021/microsoft-azure-tech">Microsoft Azure Tech Advent Calendar 2021</a> の 20 日目の記事になります]]>
     </summary>
     <title>Azure Web PubSub サービスの利用</title>
-    <updated>2026-04-03T06:49:22.122Z</updated>
+    <updated>2026-05-21T02:38:58.484Z</updated>
   </entry>
   <entry>
     <author>
@@ -122,7 +122,7 @@
 <p>皆様、Bot Framework Composer をご存じですか？なんとこれを利用すればノンコーディングでも Bot を構築することが可能で]]>
     </summary>
     <title>Bot Framework Composer を用いた Azure Bot 構築</title>
-    <updated>2026-04-03T06:49:22.103Z</updated>
+    <updated>2026-05-21T02:38:58.465Z</updated>
   </entry>
   <entry>
     <author>
@@ -142,7 +142,7 @@
     <title>
       <![CDATA[<Career><第二弾> インターンから見た Microsoft と Developer Support Internet (DSI) チーム (2021)]]>
     </title>
-    <updated>2026-04-03T06:49:22.124Z</updated>
+    <updated>2026-05-21T02:38:58.486Z</updated>
   </entry>
   <entry>
     <author>
@@ -165,7 +165,7 @@
     <title>
       <![CDATA[<Career><第一弾> Developer Support Internet (DSI) ってどのような製品の技術サポートをしているの？]]>
     </title>
-    <updated>2026-04-03T06:49:22.124Z</updated>
+    <updated>2026-05-21T02:38:58.485Z</updated>
   </entry>
   <entry>
     <author>
@@ -185,7 +185,7 @@
 <p>Windows Server 2012 以降の OS バージョンの IIS (IIS 8.0 以降) にて、カスタムの ISAPI 拡張 (ハンドラー) をワイルドカード マッピングを利用して動作させたい場合に、]]>
     </summary>
     <title>ASP.NET で 拡張子のない URL にてアクセスすると、追加したカスタム ISAPI 拡張ハンドラーが動作しない現象について</title>
-    <updated>2026-04-03T06:49:22.141Z</updated>
+    <updated>2026-05-21T02:38:58.503Z</updated>
   </entry>
   <entry>
     <author>
@@ -205,7 +205,7 @@
 <p>弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供しております。<br>今回は Debug Diagnostics Tool (以降 DebugDiag) によりメモリダ]]>
     </summary>
     <title>Debug Diagnostics Tool (DebugDiag) の取得方法について</title>
-    <updated>2026-04-03T06:49:22.131Z</updated>
+    <updated>2026-05-21T02:38:58.491Z</updated>
   </entry>
   <entry>
     <author>
@@ -226,7 +226,7 @@
 <h]]>
     </summary>
     <title>失敗した要求トレース (FREB) の取得方法について</title>
-    <updated>2026-04-03T06:49:22.134Z</updated>
+    <updated>2026-05-21T02:38:58.495Z</updated>
   </entry>
   <entry>
     <author>
@@ -248,7 +248,7 @@
 <p>FREBDump について、今回はよくいただくご質問についてまとめました。</p>]]>
     </summary>
     <title>失敗した要求トレースを契機とするメモリダンプ (FREBDump) のよくあるご質問</title>
-    <updated>2026-04-03T06:49:22.136Z</updated>
+    <updated>2026-05-21T02:38:58.497Z</updated>
   </entry>
   <entry>
     <author>
@@ -268,7 +268,7 @@
 <p>弊社にお問い合わせいただくお客様に、スムーズな解決をご提供するためにお役に立てる内容をご提供させていただきます。<br>今回は IIS のワーカープロセス (w3wp.exe) のメモリダンプを取得する手法の一つ]]>
     </summary>
     <title>失敗した要求トレースを契機とするメモリダンプ (FREBDump) の取得方法 について</title>
-    <updated>2026-04-03T06:49:22.138Z</updated>
+    <updated>2026-05-21T02:38:58.499Z</updated>
   </entry>
   <entry>
     <author>
@@ -287,7 +287,7 @@
 <p>IIS 上で仮想ディレクトリを作成することがありますが、信頼関係がない異なるドメイン間で仮想ディレクトリを作成しようとした場合、仮想ディレクトリの作成に失敗します。具体的には仮想ディレクトリを作成する際に別ドメインの]]>
     </summary>
     <title>異なるドメイン間で仮想ディレクトリを作成する場合の注意点</title>
-    <updated>2026-04-03T06:49:22.130Z</updated>
+    <updated>2026-05-21T02:38:58.491Z</updated>
   </entry>
   <entry>
     <author>
@@ -306,7 +306,7 @@
 <p>今回は ASP.NET Core を用いて、 gRPC で動く CLI （コマンドライン）でチャットができるアプリを作る方法を紹介し]]>
     </summary>
     <title>gRPC で動く CLI チャットアプリを ASP.NET Core で実装してみよう！</title>
-    <updated>2026-04-03T06:49:22.125Z</updated>
+    <updated>2026-05-21T02:38:58.486Z</updated>
   </entry>
   <entry>
     <author>
@@ -325,7 +325,7 @@
 <p>今回は WCF のバインディング処理にて競合状態により起きる問題についてご説明いたします。<br>1 つのプロセス (IIS でホストしている場合は同一アプリケーションプール) で複数の WCF のバインディングをご]]>
     </summary>
     <title>WCF のバインディング処理にて競合状態により起きる問題</title>
-    <updated>2026-04-03T06:49:22.142Z</updated>
+    <updated>2026-05-21T02:38:58.503Z</updated>
   </entry>
   <entry>
     <author>
@@ -345,7 +345,7 @@
 <p>以前 Azure Bot Service (Web App Bot もしくは Bot Channels Registration) のボットの動作に関する情報採取について以下をご]]>
     </summary>
     <title>Azure Bot Service の Portal 上の事象の調査に必要な情報</title>
-    <updated>2026-04-03T06:49:22.121Z</updated>
+    <updated>2026-05-21T02:38:58.483Z</updated>
   </entry>
   <entry>
     <author>
@@ -366,7 +366,7 @@
 <p>Web App Bot をご利用の際]]>
     </summary>
     <title>Web App Bot の常時接続について</title>
-    <updated>2026-04-03T06:49:22.100Z</updated>
+    <updated>2026-05-21T02:38:58.462Z</updated>
   </entry>
   <entry>
     <author>
@@ -386,7 +386,7 @@
 <p>今回は Azure Bot Service]]>
     </summary>
     <title>Azure Bot Service の料金やプランについて</title>
-    <updated>2026-04-03T06:49:22.119Z</updated>
+    <updated>2026-05-21T02:38:58.482Z</updated>
   </entry>
   <entry>
     <author>
@@ -406,6 +406,6 @@
 <p>Azure Bot Se]]>
     </summary>
     <title>Azure Bot Service の調査に必要な基本的な情報について</title>
-    <updated>2026-04-03T06:49:22.102Z</updated>
+    <updated>2026-05-21T02:38:58.464Z</updated>
   </entry>
 </feed>
